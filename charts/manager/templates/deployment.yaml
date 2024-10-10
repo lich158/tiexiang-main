@@ -1,0 +1,115 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "manager.fullname" . }}
+  labels:
+    {{- include "manager.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "manager.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "manager.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      initContainers:
+        - name: manager-init
+          image: "{{ .Values.initimage.repository }}:{{ .Values.initimage.tag }}"
+          imagePullPolicy: {{ .Values.initimage.pullPolicy }}
+          command: ["python3", "/app/manager.py"]
+          env:
+            - name: NACOS_URL
+              value: {{ .Values.nacos.url | quote }}
+            - name: TENANT
+              value: {{ .Values.nacos.tenant | quote }}
+            - name: DATA_ID
+              value: {{ .Values.nacos.dataId | quote }}
+            - name: GROUP
+              value: {{ .Values.nacos.group | quote }}
+            - name: MYSQL_URL
+              value: {{ .Values.mysql.url | quote }}
+            - name: MYSQL_USERNAME
+              value: {{ .Values.mysql.username | quote }}
+            - name: MYSQL_PASSWORD
+              value: {{ .Values.mysql.password | quote }}
+            - name: MYSQL_DRIVER
+              value: {{ .Values.mysql.driver | quote }}
+            - name: REDIS_NODE
+              value: {{ .Values.redis.node | quote }}
+            - name: REDIS_PORT
+              value: {{ .Values.redis.port | quote }}
+            - name: REDIS_PASSWORD
+              value: {{ .Values.redis.password | quote }}
+            - name: APP_NAME
+              value: {{ .Values.app.name | quote }}
+            - name: SERVER_PORT
+              value: {{ .Values.app.serverPort | quote }}
+            - name: MQTT_IMAGE_ID
+              value: {{ .Values.device.mqttImageId | quote }}
+            - name: MQTT_IMAGE_NAME
+              value: {{ .Values.device.mqttImageName | quote }}
+            - name: PUBLISH_SERVER_IMAGE
+              value: {{ .Values.device.publishServerImage | quote }}
+            - name: CK_DATABASE_NAME
+              value: {{ .Values.device.ckDatabaseName | quote }}
+            - name: LEVEL_0
+              value: {{ .Values.device.levelSeconds.lever0 | quote }}
+            - name: LEVEL_1
+              value: {{ .Values.device.levelSeconds.lever1 | quote }}
+            - name: LEVEL_2
+              value: {{ .Values.device.levelSeconds.lever2 | quote }}
+            - name: LEVEL_3
+              value: {{ .Values.device.levelSeconds.lever3 | quote }}
+            - name: LEVEL_4
+              value: {{ .Values.device.levelSeconds.lever4 | quote }}
+            - name: LEVEL_5
+              value: {{ .Values.device.levelSeconds.lever5 | quote }}
+            - name: LEVEL_6
+              value: {{ .Values.device.levelSeconds.lever6 | quote }}
+            - name: STAT_LOGIN_USERNAME
+              value: {{ .Values.device.statLoginUsername | quote }}
+            - name: STAT_LOGIN_PASSWORD
+              value: {{ .Values.device.statLoginPassword | quote }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["java","-Dfile.encoding=utf-8", "-jar", "/app/tx-manager.jar"]
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configMapName }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: log
+              mountPath: /app/logs
+      volumes:
+        - name: log
+          persistentVolumeClaim:
+            claimName: {{ include "manager.fullname" . }}
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "auth.fullname" . }}
+  labels:
+    {{- include "auth.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "auth.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "auth.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      initContainers:
+        - name: auth-init
+          image: "{{ .Values.initimage.repository }}:{{ .Values.initimage.tag }}"
+          imagePullPolicy: {{ .Values.initimage.pullPolicy }}
+          command: ["python3", "/app/auth.py"]
+          env:
+            - name: NACOS_URL
+              value: {{ .Values.nacos.url | quote }}
+            - name: TENANT
+              value: {{ .Values.nacos.tenant | quote }}
+            - name: DATA_ID
+              value: {{ .Values.nacos.dataId | quote }}
+            - name: GROUP
+              value: {{ .Values.nacos.group | quote }}
+            - name: MYSQL_URL
+              value: {{ .Values.mysql.url | quote }}
+            - name: MYSQL_USERNAME
+              value: {{ .Values.mysql.username | quote }}
+            - name: MYSQL_PASSWORD
+              value: {{ .Values.mysql.password | quote }}
+            - name: MYSQL_DRIVER
+              value: {{ .Values.mysql.driver | quote }}
+            - name: REDIS_NODE
+              value: {{ .Values.redis.node | quote }}
+            - name: REDIS_PORT
+              value: {{ .Values.redis.port | quote }}
+            - name: REDIS_PASSWORD
+              value: {{ .Values.redis.password | quote }}
+            - name: APP_NAME
+              value: {{ .Values.app.name | quote }}
+            - name: SERVER_PORT
+              value: {{ .Values.app.serverPort | quote }}
+
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["java","-Dfile.encoding=utf-8", "-jar", "/app/tx-auth.jar"]
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configMapName }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: log
+              mountPath: /app/logs
+      volumes:
+        - name: log
+          persistentVolumeClaim:
+            claimName: {{ include "auth.fullname" . }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

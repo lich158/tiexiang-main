@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Release.namespace }}
+data:
+  NACOS_GROUP: {{ .Values.nacosGroup | default "DEFAULT_GROUP" }}
+  NACOS_NAMESPACE: {{ .Values.nacosNamespace | default "tx" }}
+  NACOS_SERVER_ADDR: {{ .Values.nacosServerAddr | default "nacos-cs.nacos-system:8848" }}

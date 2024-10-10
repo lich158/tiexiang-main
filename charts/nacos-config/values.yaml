@@ -1,0 +1,7 @@
+# values.yaml
+name: nacos-configmap
+namespace: manager-system
+
+nacosGroup: DEFAULT_GROUP
+nacosNamespace: tx
+nacosServerAddr: nacos-cs.nacos:8848

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tx-nginx
+  namespace: nginx-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tx-nginx
+  template:
+    metadata:
+      labels:
+        app: tx-nginx
+    spec:
+      containers:
+      - name: tx-nginx
+        image: 192.168.1.204:30002/app/tx-nginx:v1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        - containerPort: 19000
+        - containerPort: 19001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tx-nginx
+  namespace: nginx-system
+spec:
+  selector:
+    app: tx-nginx
+  ports:
+  - name: name-of-service-port
+    protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 31008
+  - name: name-of-service-port2
+    protocol: TCP
+    port: 19000
+    targetPort: 19000
+    nodePort: 31010
+  - name: name-of-service-port3
+    protocol: TCP
+    port: 19001
+    targetPort: 19001
+    nodePort: 31011
+  type: NodePort

@@ -1,0 +1,55 @@
+# Default values for gateway.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: 192.168.1.204:30002/app/tx-gateway-test
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: v1.0
+
+resources:
+  limits:
+    memory: 5Gi
+  requests:
+    memory: 5Gi
+
+service:
+  type: NodePort
+  port: "31100"
+  nodePort: "31007"
+
+persistence:
+  enabled: true
+  storageClass: local
+  accessMode: ReadWriteOnce
+  size: 1Gi
+
+configMapName: nacos-configmap
+
+
+initimage:
+  repository: 192.168.1.211:30002/initnacos/gateway
+  tag: latest
+  pullPolicy: IfNotPresent #Always
+# MySQL configuration for initContainer
+mysql:
+  host: "192.168.1.211"
+  port: "32560"
+  user: "root"
+  password: "supersecret"
+  databases: "db1,db2,db3"
+
+# Nacos configuration for initContainer
+nacos:
+  url: "http://192.168.1.211:30000"
+  tenant: "dev"
+  dataId: "tx-gateway.yaml"
+  group: "DEFAULT_GROUP"
+  appPort: "31100"
+  appName: "tx-gateway"
+  redisdns: "redis-c-n0lpse-leader.redis"  # 改为 redisdns
+  redisport: "6379"
+  redisPassword: ""

@@ -1,0 +1,52 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: push-log
+  namespace: manager-system
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  storageClassName: nfs-client
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tx-push
+  namespace: manager-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tx-push
+  template:
+    metadata:
+      labels:
+        app: tx-push
+    spec:
+      containers:
+      - name: tx-push
+        image: 192.168.1.204:30002/app/tx-push-test:v1.0
+        imagePullPolicy: Always
+        command: ["java","-Dfile.encoding=utf-8", "-jar", "/app/tx-push.jar"]
+        ports:
+        - containerPort: 31004
+        envFrom:
+        - configMapRef:
+            name: nacos-configmap    
+        resources:
+          limits:
+            memory: 5Gi
+          requests:
+            memory: 5Gi
+        volumeMounts:
+          - name: log
+            mountPath: /app/logs
+      volumes:
+        - name: log
+          persistentVolumeClaim:
+            claimName: push-log
+

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nacos-configmap
+  namespace: manager-system
+data:
+  NACOS_GROUP: DEFAULT_GROUP
+  NACOS_NAMESPACE: tx
+  NACOS_SERVER_ADDR: nacos-cs.nacos-system:8848

@@ -1,0 +1,100 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "gateway.fullname" . }}
+  labels:
+    {{- include "gateway.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "gateway.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "gateway.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      initContainers:
+        - name: create-db
+          image: "{{ .Values.initimage.repository }}:{{ .Values.initimage.tag }}"
+          imagePullPolicy: {{ .Values.initimage.pullPolicy }}
+          command: ["python3", "/app/create_db.py"]
+          env:
+            - name: MYSQL_HOST
+              value: {{ .Values.mysql.host | quote }}
+            - name: MYSQL_PORT
+              value: {{ .Values.mysql.port | quote }}
+            - name: MYSQL_USER
+              value: {{ .Values.mysql.user | quote }}
+            - name: MYSQL_PASSWORD
+              value: {{ .Values.mysql.password | quote }}
+            - name: DATABASES
+              value: {{ .Values.mysql.databases | quote }}  
+        - name: gateway-cns
+          image: "{{ .Values.initimage.repository }}:{{ .Values.initimage.tag }}"
+          imagePullPolicy: {{ .Values.initimage.pullPolicy }}
+          command: ["python3", "/app/gateway-cns.py"]
+          env:
+            - name: NACOS_URL
+              value: {{ .Values.nacos.url | quote }}
+            - name: TENANT
+              value: {{ .Values.nacos.tenant | quote }}
+            - name: DATA_ID
+              value: {{ .Values.nacos.dataId | quote }}
+            - name: GROUP
+              value: {{ .Values.nacos.group | quote }}
+            - name: REDIS_NODE
+              value: {{ .Values.nacos.redisdns | quote }}
+            - name: REDIS_PORT
+              value: {{ .Values.nacos.redisport | quote  }}
+            - name: REDIS_PASSWORD
+              value: {{ .Values.nacos.redisPassword | quote }}
+            - name: APP_NAME
+              value: {{ .Values.nacos.appName  | quote }}
+            - name: SERVER_PORT
+              value: {{ .Values.nacos.appPort | quote }}
+
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["java", "-Dfile.encoding=utf-8", "-jar", "/app/tx-gateway.jar"]
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configMapName }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: log
+              mountPath: /app/logs
+      volumes:
+        - name: log
+          persistentVolumeClaim:
+            claimName: {{ include "gateway.fullname" . }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

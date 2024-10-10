@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "push.fullname" . }}
+  labels:
+    {{- include "push.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "push.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "push.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      initContainers:
+        - name: push-init
+          image: "{{ .Values.initimage.repository }}:{{ .Values.initimage.tag }}"
+          imagePullPolicy: {{ .Values.initimage.pullPolicy }}
+          command: ["python3", "/app/push.py"]
+          env:
+            - name: NACOS_URL
+              value: "{{ .Values.nacos.url }}"
+            - name: TENANT
+              value: "{{ .Values.nacos.tenant }}"
+            - name: DATA_ID
+              value: "{{ .Values.nacos.dataId }}"
+            - name: GROUP
+              value: "{{ .Values.nacos.group }}"
+            - name: REDIS_NODE
+              value: "{{ .Values.redis.node }}"
+            - name: REDIS_PORT
+              value: "{{ .Values.redis.port }}"
+            - name: REDIS_PASSWORD
+              value: "{{ .Values.redis.password }}"
+            - name: APP_NAME
+              value: "{{ .Values.app.name }}"
+            - name: SERVER_PORT
+              value: "{{ .Values.app.serverPort }}"
+
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["java", "-Dfile.encoding=utf-8", "-jar", "/app/tx-push.jar"]
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configMapName }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: log
+              mountPath: /app/logs
+      volumes:
+        - name: log
+          persistentVolumeClaim:
+            claimName: {{ include "push.fullname" . }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

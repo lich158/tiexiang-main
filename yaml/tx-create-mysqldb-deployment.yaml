@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-mysql-deployment
+  labels:
+    app: python-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-mysql
+  template:
+    metadata:
+      labels:
+        app: python-mysql
+    spec:
+      containers:
+      - name: python-mysql-container
+        image: python:3.9
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/bash", "-c", " tail -f /dev/null"]
+        ports:
+        - containerPort: 5000
+        env:
+          - name: MYSQL_HOST
+            value: "mysql-i-estpeb.mysql"
+          - name: MYSQL_PORT
+            value: "3306"
+          - name: MYSQL_USER
+            value: "root"
+          - name: MYSQL_PASSWORD
+            value: "supersecret"
+          - name: DATABASE_NAMES   # 传递多个数据库名称
+            value: "db1,db2,db3"   # 使用逗号分隔多个数据库名称
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/config
+      volumes:
+      - name: config-volume
+        configMap:
+          name: create-db-configmap
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: create-db-configmap
+data:
+  create_db.py: |
+    import os
+    import mysql.connector
+
+    # 获取环境变量
+    MYSQL_HOST = os.getenv('MYSQL_HOST', 'mysql-i-estpeb.mysql')
+    MYSQL_PORT = int(os.getenv('MYSQL_PORT', 3306))
+    MYSQL_USER = os.getenv('MYSQL_USER', 'root')
+    MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', '')
+    DATABASE_NAMES = os.getenv('DATABASE_NAMES', '').split(',')
+
+    def create_databases():
+        # 连接到 MySQL
+        try:
+            connection = mysql.connector.connect(
+                host=MYSQL_HOST,
+                port=MYSQL_PORT,
+                user=MYSQL_USER,
+                password=MYSQL_PASSWORD
+            )
+            cursor = connection.cursor()
+
+            # 遍历数据库名称并创建
+            for db in DATABASE_NAMES:
+                if db:  # 确保数据库名称不为空
+                    cursor.execute(f"CREATE DATABASE IF NOT EXISTS {db.strip()}")
+                    print(f"Database {db.strip()} created successfully!")
+
+            cursor.close()
+            connection.close()
+        except mysql.connector.Error as err:
+            print(f"Error: {err}")
+
+    if __name__ == "__main__":
+        create_databases()

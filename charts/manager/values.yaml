@@ -1,0 +1,77 @@
+# Default values for manager.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: 192.168.1.204:30002/app/tx-manager-test
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v1.0"
+
+initimage:
+  repository: 192.168.1.211:30002/initnacos/manager
+  tag: latest
+  pullPolicy: Always
+
+# Nacos configuration
+nacos:
+  url: "http://192.168.1.211:30000/nacos/v1/cs/configs"
+  tenant: "dev"
+  dataId: "tx-manager.yaml"
+  group: "DEFAULT_GROUP"
+
+# MySQL configuration
+mysql:
+  url: "jdbc:mysql://mysql-i-estpeb.mysql:3306/tx_manager?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8"
+  username: "root"
+  password: "supersecret"
+  driver: "com.mysql.cj.jdbc.Driver"
+
+# Redis configuration
+redis:
+  node: "redis-c-n0lpse-leader.redis"
+  port: "6379"
+  password: ""
+
+# Application configuration
+app:
+  name: "tx-manager"
+  serverPort: "31101"
+
+# Device configuration
+device:
+  mqttImageId: "sha256:cac0e703f48b6ef0d760e02eb2bc1af9075dcfdc321f4760eb60518f4172a0ef"
+  mqttImageName: "tiexiang.io/tiexiang/bcsu-image:latest"
+  publishServerImage: "publish-server:latest"
+  ckDatabaseName: "default"
+  levelSeconds:
+    lever0: "12000"
+    lever1: "600"
+    lever2: "300"
+    lever3: "180"
+    lever4: "60"
+    lever5: "30"
+    lever6: "10"
+  statLoginUsername: "admin"
+  statLoginPassword: "123456"
+
+# Service and deployment configurations
+service:
+  port: 31101
+
+persistence:
+  enabled: true
+  storageClass: local
+  accessMode: ReadWriteOnce
+  size: 1Gi
+
+resources:
+  limits:
+    memory: 5Gi
+  requests:
+    memory: 5Gi
+
+
+configMapName: nacos-configmap

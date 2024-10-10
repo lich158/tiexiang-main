@@ -1,0 +1,17 @@
+# Default values for nginx.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: 192.168.1.204:30002/app/tx-nginx
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v1.0"
+
+service:
+  type: NodePort
+  nodePort: 31008
+  nodePort2: 31010
+  nodePort3: 31011
