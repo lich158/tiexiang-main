@@ -3,6 +3,16 @@ entries:
   auth:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-10-10T07:37:09.637381432Z"
+    description: A Helm chart for Kubernetes
+    digest: 39ba7764db33f6d7b9f845754fa5314b0130b738329e7bb574e64bd4e688eac3
+    name: auth
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/auth-0.1.2/auth-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-10-10T06:48:10.375624922Z"
     description: A Helm chart for Kubernetes
     digest: bbcd60a221dfc247a270307ed228dbe387f5b23c5df9307ae392db36b1fc2b82
@@ -77,4 +87,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/push-0.1.1/push-0.1.1.tgz
     version: 0.1.1
-generated: "2024-10-10T06:48:11.078140787Z"
+generated: "2024-10-10T07:37:09.637389637Z"
