@@ -1,0 +1,80 @@
+apiVersion: v1
+entries:
+  auth:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-10-10T14:39:12.737413937+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 497ca24c2e5e7411b04d6d6d11f213932baede3c47716411b5e26bc2ae6c28b4
+    name: auth
+    type: application
+    urls:
+    - auth-0.1.0.tgz
+    version: 0.1.0
+  eeu:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-10-10T14:39:12.738192189+08:00"
+    description: A Helm chart for Kubernetes
+    digest: f8050745dcb59a328239295252f6c96deb2fcc424e89ff315e62d43d3960d821
+    name: eeu
+    type: application
+    urls:
+    - eeu-0.1.0.tgz
+    version: 0.1.0
+  gateway:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-10-10T14:39:12.738829971+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 1544c3dd0a5b1d266249300a0b840ca6f179275fa94ee8030bc09d23d06e2801
+    name: gateway
+    type: application
+    urls:
+    - gateway-0.1.0.tgz
+    version: 0.1.0
+  manager:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-10-10T14:39:12.739460722+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 8c55ab5a032a7f3bb5491a2da3e3b52a5dbd0f25ccfaae6aa811713a752f1b9d
+    name: manager
+    type: application
+    urls:
+    - manager-0.1.0.tgz
+    version: 0.1.0
+  nacos-config:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-10-10T14:39:12.739751957+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 1da3ab9ff467fed387732a62c378fb389fe68af9cfd079f730d695b726dc7826
+    name: nacos-config
+    type: application
+    urls:
+    - nacos-config-0.1.0.tgz
+    version: 0.1.0
+  nginx:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-10-10T14:39:12.74008903+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 9760380c3ce06f2bad7ec5d0c779658e9e8a9c5c443783b5889324b4f8398960
+    name: nginx
+    type: application
+    urls:
+    - nginx-0.1.0.tgz
+    version: 0.1.0
+  push:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-10-10T14:39:12.740559102+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 47051c9455e7f7df1126b7ad03f0cc491c99cebdb9ae264dfb92278401702e45
+    name: push
+    type: application
+    urls:
+    - push-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-10-10T14:39:12.736559272+08:00"
