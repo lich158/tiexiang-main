@@ -45,6 +45,16 @@ entries:
   gateway:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-10-10T08:29:45.358480295Z"
+    description: A Helm chart for Kubernetes
+    digest: 64bed9a913fee204161a979fac66ecd71b0ab3cfb82f09a6e5d12323c87fb055
+    name: gateway
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/gateway-0.1.2/gateway-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-10-10T06:48:10.615154999Z"
     description: A Helm chart for Kubernetes
     digest: 6197405a7b5cce301754c9b0139bd92e93642a126bae3c57e0b21a55baf369ab
@@ -97,4 +107,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/push-0.1.1/push-0.1.1.tgz
     version: 0.1.1
-generated: "2024-10-10T08:26:24.153634492Z"
+generated: "2024-10-10T08:29:45.358500362Z"
