@@ -72,13 +72,6 @@ spec:
                 name: {{ .Values.configMapName }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          volumeMounts:
-            - name: log
-              mountPath: /app/logs
-      volumes:
-        - name: log
-          persistentVolumeClaim:
-            claimName: {{ include "auth.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

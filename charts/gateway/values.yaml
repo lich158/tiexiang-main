@@ -21,12 +21,6 @@ service:
   port: "31100"
   nodePort: "31007"
 
-persistence:
-  enabled: true
-  storageClass: local
-  accessMode: ReadWriteOnce
-  size: 1Gi
-
 configMapName: nacos-configmap
 
 
