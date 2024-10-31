@@ -29,42 +29,55 @@ spec:
         - name: create-db
           image: "{{ .Values.initimage.repository }}:{{ .Values.initimage.tag }}"
           imagePullPolicy: {{ .Values.initimage.pullPolicy }}
-          command: ["python3", "/app/create_db.py"]
+          command: ["python3", "/app/create-db.py"]
+          volumeMounts:
+            - name: {{ .Chart.Name }}-configmap
+              mountPath: /app/config  # 容器中的路径
           env:
-            - name: MYSQL_HOST
-              value: {{ .Values.mysql.host | quote }}
-            - name: MYSQL_PORT
-              value: {{ .Values.mysql.port | quote }}
-            - name: MYSQL_USER
-              value: {{ .Values.mysql.user | quote }}
-            - name: MYSQL_PASSWORD
-              value: {{ .Values.mysql.password | quote }}
             - name: DATABASES
               value: {{ .Values.mysql.databases | quote }}  
         - name: gateway-cns
           image: "{{ .Values.initimage.repository }}:{{ .Values.initimage.tag }}"
           imagePullPolicy: {{ .Values.initimage.pullPolicy }}
           command: ["python3", "/app/gateway-cns.py"]
+          volumeMounts:
+            - name: {{ .Chart.Name }}-configmap
+              mountPath: /app/config  # 容器中的路径
           env:
-            - name: NACOS_URL
-              value: {{ .Values.nacos.url | quote }}
             - name: TENANT
               value: {{ .Values.nacos.tenant | quote }}
             - name: DATA_ID
               value: {{ .Values.nacos.dataId | quote }}
             - name: GROUP
               value: {{ .Values.nacos.group | quote }}
-            - name: REDIS_NODE
-              value: {{ .Values.nacos.redisdns | quote }}
-            - name: REDIS_PORT
-              value: {{ .Values.nacos.redisport | quote  }}
-            - name: REDIS_PASSWORD
-              value: {{ .Values.nacos.redisPassword | quote }}
             - name: APP_NAME
               value: {{ .Values.nacos.appName  | quote }}
             - name: SERVER_PORT
               value: {{ .Values.nacos.appPort | quote }}
-
+        - name: emqx-api
+          image: "{{ .Values.initimage.repository }}:{{ .Values.initimage.tag }}"
+          imagePullPolicy: {{ .Values.initimage.pullPolicy }}
+          command: ["python3", "/app/emqx-api.py"]
+          volumeMounts:
+            - name: {{ .Chart.Name }}-configmap
+              mountPath: /app/config  # 容器中的路径
+          env:
+            - name: EMQX_USER_ID
+              value: {{ .Values.emqx.username | quote }}  
+            - name: EMQX_PASSWORD
+              value: {{ .Values.emqx.password | quote }}  
+            - name: EMQX_PTOPIC
+              value: {{ .Values.emqx.ptopic | quote }}  
+            - name: EMQX_STOPIC
+              value: {{ .Values.emqx.stopic | quote }}  
+            - name: EMQX_ATOPIC
+              value: {{ .Values.emqx.atopic | quote }}  
+            - name: EMQX_PPERMISSION
+              value: {{ .Values.emqx.ppermission | quote }}  
+            - name: EMQX_SPERMISSION
+              value: {{ .Values.emqx.spermission | quote }} 
+            - name: EMQX_APERMISSION
+              value: {{ .Values.emqx.apermission | quote }} 
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -79,13 +92,11 @@ spec:
                 name: {{ .Values.configMapName }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          volumeMounts:
-            - name: log
-              mountPath: /app/logs
       volumes:
-        - name: log
-          persistentVolumeClaim:
-            claimName: {{ include "gateway.fullname" . }}
+        - name: {{ .Chart.Name }}-configmap
+          configMap:
+            name: {{ include "gateway.fullname" . }}-config
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
