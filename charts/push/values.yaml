@@ -41,10 +41,4 @@ resources:
   requests:
     memory: 5Gi
 
-persistence:
-  enabled: true
-  storageClass: local
-  accessMode: ReadWriteOnce
-  size: 1Gi
-
 configMapName: nacos-configmap

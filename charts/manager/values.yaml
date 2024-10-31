@@ -61,12 +61,6 @@ device:
 service:
   port: 31101
 
-persistence:
-  enabled: true
-  storageClass: local
-  accessMode: ReadWriteOnce
-  size: 1Gi
-
 resources:
   limits:
     memory: 5Gi
