@@ -26,27 +26,11 @@ configMapName: nacos-configmap
 initimage:
   repository: 192.168.1.211:30002/initnacos/auth
   tag: latest
-  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent #Always
 
 # Nacos configuration
 nacos:
-  url: "http://192.168.1.211:30000/nacos/v1/cs/configs"
-  tenant: "dev"
   dataId: "tx-auth.yaml"
-  group: "DEFAULT_GROUP"
-
-# MySQL configuration
-mysql:
-  url: "jdbc:mysql://mysql-i-estpeb.mysql:3306/tx_auth?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&allowMultiQueries=true&autoReconnect=true"
-  username: "root"
-  password: "supersecret"
-  driver: "com.mysql.cj.jdbc.Driver"
-
-# Redis configuration
-redis:
-  node: "redis-c-n0lpse-leader-external-service.redis"
-  port: "6379"
-  password: ""
 
 app:
   name: "tx-auth"

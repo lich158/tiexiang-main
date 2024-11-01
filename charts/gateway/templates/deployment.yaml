@@ -31,7 +31,7 @@ spec:
           imagePullPolicy: {{ .Values.initimage.pullPolicy }}
           command: ["python3", "/app/create-db.py"]
           volumeMounts:
-            - name: {{ .Chart.Name }}-configmap
+            - name: {{ .Values.configMapName }}
               mountPath: /app/config  # 容器中的路径
           env:
             - name: DATABASES
@@ -41,25 +41,31 @@ spec:
           imagePullPolicy: {{ .Values.initimage.pullPolicy }}
           command: ["python3", "/app/gateway-cns.py"]
           volumeMounts:
-            - name: {{ .Chart.Name }}-configmap
+            - name: {{ .Values.configMapName }}
               mountPath: /app/config  # 容器中的路径
           env:
-            - name: TENANT
-              value: {{ .Values.nacos.tenant | quote }}
             - name: DATA_ID
               value: {{ .Values.nacos.dataId | quote }}
-            - name: GROUP
-              value: {{ .Values.nacos.group | quote }}
             - name: APP_NAME
               value: {{ .Values.nacos.appName  | quote }}
             - name: SERVER_PORT
               value: {{ .Values.nacos.appPort | quote }}
+            - name: NACOS_GROUP
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.configMapName }}
+                  key: NACOS_GROUP
+            - name: NACOS_NAMESPACE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.configMapName }}
+                  key: NACOS_NAMESPACE
         - name: emqx-api
           image: "{{ .Values.initimage.repository }}:{{ .Values.initimage.tag }}"
           imagePullPolicy: {{ .Values.initimage.pullPolicy }}
           command: ["python3", "/app/emqx-api.py"]
           volumeMounts:
-            - name: {{ .Chart.Name }}-configmap
+            - name: {{ .Values.configMapName }}
               mountPath: /app/config  # 容器中的路径
           env:
             - name: EMQX_USER_ID
@@ -93,7 +99,7 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-        - name: {{ .Chart.Name }}-configmap
+        - name: {{ .Values.configMapName }}
           configMap:
-            name: {{ include "gateway.fullname" . }}-config
+            name: {{ .Values.configMapName }}
 

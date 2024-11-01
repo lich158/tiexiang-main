@@ -26,29 +26,12 @@ spec:
           image: "{{ .Values.initimage.repository }}:{{ .Values.initimage.tag }}"
           imagePullPolicy: {{ .Values.initimage.pullPolicy }}
           command: ["python3", "/app/manager.py"]
+          volumeMounts:
+            - name: {{ .Values.configMapName }}
+              mountPath: /app/config  # 容器中的路径
           env:
-            - name: NACOS_URL
-              value: {{ .Values.nacos.url | quote }}
-            - name: TENANT
-              value: {{ .Values.nacos.tenant | quote }}
             - name: DATA_ID
               value: {{ .Values.nacos.dataId | quote }}
-            - name: GROUP
-              value: {{ .Values.nacos.group | quote }}
-            - name: MYSQL_URL
-              value: {{ .Values.mysql.url | quote }}
-            - name: MYSQL_USERNAME
-              value: {{ .Values.mysql.username | quote }}
-            - name: MYSQL_PASSWORD
-              value: {{ .Values.mysql.password | quote }}
-            - name: MYSQL_DRIVER
-              value: {{ .Values.mysql.driver | quote }}
-            - name: REDIS_NODE
-              value: {{ .Values.redis.node | quote }}
-            - name: REDIS_PORT
-              value: {{ .Values.redis.port | quote }}
-            - name: REDIS_PASSWORD
-              value: {{ .Values.redis.password | quote }}
             - name: APP_NAME
               value: {{ .Values.app.name | quote }}
             - name: SERVER_PORT
@@ -79,6 +62,16 @@ spec:
               value: {{ .Values.device.statLoginUsername | quote }}
             - name: STAT_LOGIN_PASSWORD
               value: {{ .Values.device.statLoginPassword | quote }}
+            - name: NACOS_GROUP
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.configMapName }}
+                  key: NACOS_GROUP
+            - name: NACOS_NAMESPACE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.configMapName }}
+                  key: NACOS_NAMESPACE
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -93,16 +86,7 @@ spec:
                 name: {{ .Values.configMapName }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+      volumes:
+        - name: {{ .Values.configMapName }}
+          configMap:
+            name: name: {{ .Values.configMapName }}

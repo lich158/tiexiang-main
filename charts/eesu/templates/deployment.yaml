@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "auth.fullname" . }}
+  name: {{ include "eesu.fullname" . }}
   labels:
-    {{- include "auth.labels" . | nindent 4 }}
+    {{- include "eesu.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "auth.selectorLabels" . | nindent 6 }}
+      {{- include "eesu.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -16,30 +16,32 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "auth.labels" . | nindent 8 }}
+        {{- include "eesu.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       initContainers:
-        - name: auth-init
+        - name: eesu-init
           image: "{{ .Values.initimage.repository }}:{{ .Values.initimage.tag }}"
           imagePullPolicy: {{ .Values.initimage.pullPolicy }}
-          command: ["python3", "/app/auth.py"]
+          command: ["python3", "/app/eesu.py"]
           volumeMounts:
             - name: {{ .Values.configMapName }}
               mountPath: /app/config  # 容器中的路径
           env:
             - name: DATA_ID
               value: {{ .Values.nacos.dataId | quote }}
+            - name: MQTT_CLIENT_ID
+              value: {{ .Values.mqtt.clientId | quote}}
+            - name: MQTT_QOS
+              value: {{ .Values.mqtt.qos | quote}}
+            - name: MQTT_TOPIC
+              value: {{ .Values.mqtt.topic | quote}}
             - name: APP_NAME
-              value: {{ .Values.app.name | quote }}
+              value: {{ .Values.app.name | quote}}
             - name: SERVER_PORT
-              value: {{ .Values.app.serverPort | quote }}
+              value: {{ .Values.app.serverPort | quote}}
             - name: NACOS_GROUP
               valueFrom:
                 configMapKeyRef:
@@ -54,7 +56,7 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["java","-Dfile.encoding=utf-8", "-jar", "/app/tx-auth.jar"]
+          command: ["java","-Dfile.encoding=utf-8", "-jar", "/app/tx-eesu.jar"]
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -65,6 +67,6 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-        - name: nacos-configmap
+        - name: {{ .Values.configMapName }}
           configMap:
-            name:  {{ .Values.configMapName }}
+            name: {{ .Values.configMapName }}

@@ -6,4 +6,8 @@ metadata:
 data:
   NACOS_GROUP: {{ .Values.nacosGroup | default "DEFAULT_GROUP" }}
   NACOS_NAMESPACE: {{ .Values.nacosNamespace | default "tx" }}
-  NACOS_SERVER_ADDR: {{ .Values.nacosServerAddr | default "nacos-cs.nacos-system:8848" }}
+  NACOS_SERVER_ADDR: {{ (fromYaml .Values.configdata).applications.nacos.apiserver.DNS | default "nacos-cs.nacos-system:8848" }}
+  config.yaml: 
+     {{- .Values.configdata | toYaml | nindent 4 }}
+
+

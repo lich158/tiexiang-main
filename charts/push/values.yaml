@@ -16,16 +16,7 @@ initimage:
   pullPolicy: IfNotPresent
 # Nacos 配置
 nacos:
-  url: "http://192.168.1.211:30000/nacos/v1/cs/configs"
-  tenant: "dev"
   dataId: "tx-push.yaml"
-  group: "DEFAULT_GROUP"
-
-# Redis 配置
-redis:
-  node: "redis-c-n0lpse-leader.redis"
-  port: "6379"
-  password: ""
 
 # 应用程序配置
 app:

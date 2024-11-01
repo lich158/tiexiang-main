@@ -4,4 +4,231 @@ namespace: manager-system
 
 nacosGroup: DEFAULT_GROUP
 nacosNamespace: tx
-nacosServerAddr: nacos-cs.nacos:8848
+
+configdata: |
+  kubernetes:
+    node:
+    - name: master1
+      address: 192.168.2.4
+    - name: master2
+      address: 192.168.2.24
+    - name: master3
+      address: 192.168.2.44
+    - name: worker1
+      address: 192.168.2.5
+    - name: worker2
+      address: 192.168.2.6
+    - name: worker3
+      address: 192.168.2.25
+    - name: worker4
+      address: 192.168.2.26
+    - name: worker5
+      address: 192.168.2.45
+    - name: worker6
+      address: 192.168.2.46
+    admin:
+      token: eyJhbGciOiJSUzI1NiIsImtpZCI6InBtTG9odFZJZ2tzSFlLY0dQVWJsRVNLQzBEQUN0eU9BTURtVmJacUxjRTAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJhZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjZhMmU0NGI0LWMzYWEtNDdkNC1iZDEyLTcxOGRiNDhkZDNkMiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDprdWJlLXN5c3RlbTphZG1pbiJ9.yrpkg4cE7IkKIB8bsgpiGbpx6Ayvb_ea5dLiLhcw-qPTGheHh5ea1w4WlKtj4xh0HYX8vXWNDx1Aanezo7jKBf4NCF5C_TP25Gol8v3BQlHj0d-dvNv5LBpkO6cqBdgrBc1rKYiP1NuDl78rP5X7A76gAIeBFpeItoYy66EtS3SLLZi-G0Vfr_M25goSrcuTM9jixlKaGDoSSOEQIdRG9oGsDHMp4uScGf-l4tv8PhTp2ZfXcjfP3TPc9DYLxkcRg0IulfDIUaV1AmjdXCEdwWBCSzzmzkBo9Ex9ni9_GBafxIdfw7upsi1vadLmwvAoQXYpzAplVhhXZVfe7uo6bQ
+    apiserver:
+      port: 6443
+
+  applications:
+    kubesphere:
+      webui:
+        username: admin
+        password: P@88w0rd
+      console:
+        DNS: ks-console.kubesphere-system
+        clusterIP: 10.233.34.57
+        type: NodePort
+        ports:
+        - name: nginx
+          port: 80
+          nodePort: 30880
+      apiserver:
+        DNS: ks-apiserver.kubesphere-system
+        clusterIP: 10.233.9.65
+        type: NodePort
+        ports:
+        - name: null
+          port: 80
+          nodePort: 30664
+    emqx:
+      webui:
+        username: admin
+        password: public
+      api:
+        api_key: emqx-operator-controller
+        api_secret: o8z9vbmdeubratg2bycsgwmdvesj04pxucbte3lumsj59xw7qcle4nactoiskuwo
+      dashboard:
+        DNS: emqx-cluster-dashboard.emqx-system
+        clusterIP: 10.233.58.32
+        type: NodePort
+        ports:
+        - name: dashboard
+          port: 18083
+          nodePort: 30457
+      listeners:
+        DNS: emqx-cluster-listeners.emqx-system
+        clusterIP: 10.233.38.119
+        type: NodePort
+        ports:
+        - name: ssl-default
+          port: 8883
+          nodePort: 30885
+        - name: tcp-default
+          port: 1883
+          nodePort: 31293
+        - name: ws-default
+          port: 8083
+          nodePort: 30482
+        - name: wss-default
+          port: 8084
+          nodePort: 31352
+    mysql:
+      api:
+        root_user: root
+        root_password: sakila
+        root_host: '%'
+      apiserver:
+        DNS: mysql-innodbcluster.mysql-system
+        clusterIP: 10.233.12.19
+        type: NodePort
+        ports:
+        - name: mysql
+          port: 3306
+          nodePort: 30980
+        - name: mysqlx
+          port: 33060
+          nodePort: 32217
+        - name: mysql-alternate
+          port: 6446
+          nodePort: 30254
+        - name: mysqlx-alternate
+          port: 6448
+          nodePort: 32471
+        - name: mysql-ro
+          port: 6447
+          nodePort: 32370
+        - name: mysqlx-ro
+          port: 6449
+          nodePort: 31323
+        - name: mysql-rw-split
+          port: 6450
+          nodePort: 31952
+        - name: router-rest
+          port: 8443
+          nodePort: 31674
+    clickhouse:
+      api:
+        username: admin
+        password: clickhouse
+      apiserver:
+        DNS: service-clickhouse-cluster.clickhouse-system
+        clusterIP: 10.233.7.69
+        type: NodePort
+        ports:
+        - name: http
+          port: 8123
+          nodePort: 31728
+        - name: tcp
+          port: 9000
+          nodePort: 31624
+    redis:
+      leader:
+        DNS: redis-cluster-leader.redis-system
+        clusterIP: 10.233.47.13
+        type: ClusterIP
+        ports:
+        - name: redis-client
+          port: 6379
+          nodePort: null
+      follower:
+        DNS: redis-cluster-follower.redis-system
+        clusterIP: 10.233.19.21
+        type: ClusterIP
+        ports:
+        - name: redis-client
+          port: 6379
+          nodePort: null
+      leader_external:
+        DNS: redis-cluster-leader-external-service.redis-system
+        clusterIP: 10.233.46.74
+        type: NodePort
+        ports:
+        - name: client
+          port: 6379
+          nodePort: 31287
+      follower_external:
+        DNS: redis-cluster-follower-external-service.redis-system
+        clusterIP: 10.233.63.63
+        type: NodePort
+        ports:
+        - name: client
+          port: 6379
+          nodePort: 32045
+    minio:
+      webui:
+        username: minio
+        password: minio123
+      api:
+        access_key: minio
+        secret_key: minio123
+      console:
+        DNS: myminio-console.minio-system
+        clusterIP: 10.233.8.46
+        type: NodePort
+        ports:
+        - name: https-console
+          port: 9443
+          nodePort: 32627
+      apiserver:
+        DNS: minio.minio-system
+        clusterIP: 10.233.19.158
+        type: NodePort
+        ports:
+        - name: https-minio
+          port: 443
+          nodePort: 32477
+    nacos:
+      webui:
+        username: nacos
+        password: nacos
+      apiserver:
+        DNS: nacos-cs.nacos-system
+        clusterIP: 10.233.47.89
+        type: NodePort
+        ports:
+        - name: http
+          port: 8848
+          nodePort: 30000
+        - name: client-rpc
+          port: 9848
+          nodePort: 31000
+        - name: raft-rpc
+          port: 9849
+          nodePort: 31001
+        - name: old-raft-rpc
+          port: 7848
+          nodePort: 31002
+    harbor:
+      domain: tiexiang.io
+      webui:
+        username: admin
+        password: Harbor12345
+      dashboard:
+        DNS: harbor.harbor-system
+        clusterIP: 10.233.25.145
+        type: NodePort
+        ports:
+        - name: http
+          port: 80
+          nodePort: 30002
+    dind:
+      apiserver:
+        DNS: dind-server.dind-system
+        clusterIP: 10.233.53.189
+        type: NodePort
+        ports:
+        - name: docker
+          port: 2375
+          nodePort: 30011
