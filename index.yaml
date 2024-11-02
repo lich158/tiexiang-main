@@ -260,6 +260,16 @@ entries:
   push:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-11-02T07:36:30.620636615Z"
+    description: A Helm chart for Kubernetes
+    digest: ef402ad6dceff1336ba95fef3adfef577fb7398d0153c3880f0f3c58755f7ad6
+    name: push
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/push-0.1.6/push-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-11-02T01:30:40.754625459Z"
     description: A Helm chart for Kubernetes
     digest: d3f8cd55c3621ce3ce58fd5f03edd5dfb2e58fc158c12642d44976e1b9fac594
@@ -298,4 +308,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/push-0.1.1/push-0.1.1.tgz
     version: 0.1.1
-generated: "2024-11-02T01:30:40.754715198Z"
+generated: "2024-11-02T07:36:30.62070374Z"
