@@ -31,11 +31,11 @@ spec:
               mountPath: /app/config  # 容器中的路径
           env:
             - name: DATA_ID
-              value: {{ .Values.nacos.dataId }}
+              value: {{ .Values.nacos.dataId | quote}}
             - name: APP_NAME
-              value: {{ .Values.app.name }}
+              value: {{ .Values.app.name | quote}}
             - name: SERVER_PORT
-              value: {{ .Values.app.serverPort }}
+              value: {{ .Values.app.serverPort | quote}}
             - name: NACOS_GROUP
               valueFrom:
                 configMapKeyRef:
