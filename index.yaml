@@ -54,6 +54,16 @@ entries:
   eesu:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-11-02T01:30:40.588952123Z"
+    description: A Helm chart for Kubernetes
+    digest: 4dddcc95f98288ff2729666025bbc3c200f9bbf6027171d5dac619f260973e53
+    name: eesu
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/eesu-0.1.5/eesu-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-11-01T07:47:29.914563795Z"
     description: A Helm chart for Kubernetes
     digest: 48f22d007fff9ee942ea73d37eed383e519b78c07e22e9b97de70e8cc6b84248
@@ -145,6 +155,16 @@ entries:
     - https://github.com/lich158/tx-java-app/releases/download/gateway-0.1.1/gateway-0.1.1.tgz
     version: 0.1.1
   manager:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-11-02T01:30:40.673896366Z"
+    description: A Helm chart for Kubernetes
+    digest: f2000ba873669d0f04fb305ad35598dbecda78f065ae76a77da27abec8c1d997
+    name: manager
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/manager-0.1.5/manager-0.1.5.tgz
+    version: 0.1.5
   - apiVersion: v2
     appVersion: 0.1.0
     created: "2024-11-01T07:47:30.161123923Z"
@@ -240,6 +260,16 @@ entries:
   push:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-11-02T01:30:40.754625459Z"
+    description: A Helm chart for Kubernetes
+    digest: d3f8cd55c3621ce3ce58fd5f03edd5dfb2e58fc158c12642d44976e1b9fac594
+    name: push
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/push-0.1.5/push-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-11-01T07:47:30.550467067Z"
     description: A Helm chart for Kubernetes
     digest: 779f8cd3ee7464efa4fe92ec593b2a9d41262022710460e9824e8c73573986d5
@@ -268,4 +298,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/push-0.1.1/push-0.1.1.tgz
     version: 0.1.1
-generated: "2024-11-01T07:47:30.550549962Z"
+generated: "2024-11-02T01:30:40.754715198Z"
