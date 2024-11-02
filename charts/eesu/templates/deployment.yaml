@@ -56,7 +56,7 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["java","-Dfile.encoding=utf-8", "-jar", "/app/tx-eesu.jar"]
+          command: ["java","-Dfile.encoding=utf-8", "-jar", "/app/tx-eeu.jar"]
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
