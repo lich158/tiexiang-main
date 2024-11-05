@@ -3,7 +3,7 @@ name: nacos-configmap
 namespace: manager-system
 
 nacosGroup: DEFAULT_GROUP
-nacosNamespace: tx
+nacosNamespace: base-test
 
 configdata: |
   kubernetes:

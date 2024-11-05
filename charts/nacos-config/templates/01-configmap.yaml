@@ -9,5 +9,3 @@ data:
   NACOS_SERVER_ADDR: {{ (fromYaml .Values.configdata).applications.nacos.apiserver.DNS | default "nacos-cs.nacos-system:8848" }}
   config.yaml: 
      {{- .Values.configdata | toYaml | nindent 4 }}
-
-

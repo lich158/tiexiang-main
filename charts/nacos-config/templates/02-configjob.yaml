@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: allconfig
+spec:
+  template:
+    spec:
+      containers:
+        - name: nacos-config
+          image: 192.168.2.4:30002/initnacos/allconfig
+          imagePullPolicy: IfNotPresent
+          command: ["bash", "-c", "python3 create-db.py && python3 gateway-cns.py && \
+                    python3 emqx-api.py && python3 eesu.py && python3 dmsu.py && \
+                    python3 auth.py && python3 push.py"]
+          volumeMounts:
+            - name: nacosconfigmap
+              mountPath: /app/config  # 容器中的路径
+      volumes:
+        - name: nacosconfigmap
+          configMap:
+            name: {{ .Values.name }}
+      restartPolicy: OnFailure
+  backoffLimit: 3
