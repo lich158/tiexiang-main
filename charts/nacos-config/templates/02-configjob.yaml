@@ -15,6 +15,17 @@ spec:
           volumeMounts:
             - name: nacosconfigmap
               mountPath: /app/config  # 容器中的路径
+          env:
+          - name: NACOS_GROUP
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.configMapName }}
+                  key: NACOS_GROUP
+            - name: NACOS_NAMESPACE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Values.configMapName }}
+                  key: NACOS_NAMESPACE
       volumes:
         - name: nacosconfigmap
           configMap:
