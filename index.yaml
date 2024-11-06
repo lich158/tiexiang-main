@@ -3,6 +3,16 @@ entries:
   auth:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-11-06T08:48:34.901536278Z"
+    description: A Helm chart for Kubernetes
+    digest: bd14c5b92d6f314b2c8f76c88dd36ec71effff59ae5fda8e19e0b183479b94c8
+    name: auth
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/auth-0.1.7/auth-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-11-01T07:47:29.779982384Z"
     description: A Helm chart for Kubernetes
     digest: f983623618aebf84edfddf3bfec0c974057ad4ec83a1b8704f49ed4590d2125d
@@ -52,6 +62,16 @@ entries:
     - https://github.com/lich158/tx-java-app/releases/download/auth-0.1.1/auth-0.1.1.tgz
     version: 0.1.1
   eesu:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-11-06T08:48:35.017304595Z"
+    description: A Helm chart for Kubernetes
+    digest: ce75a3d7e14f8718ffe9b9752b7aa0cb169ef0e96567f25b1c83289bd27f6456
+    name: eesu
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/eesu-0.1.6/eesu-0.1.6.tgz
+    version: 0.1.6
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2024-11-02T01:30:40.588952123Z"
@@ -106,6 +126,16 @@ entries:
   gateway:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-11-06T08:48:35.107742824Z"
+    description: A Helm chart for Kubernetes
+    digest: 96add8a2905f15403ca7763d6db105a3b38a7b0a85979c6d32f96c9b1eacfe24
+    name: gateway
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/gateway-0.1.6/gateway-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-11-01T07:47:30.039218832Z"
     description: A Helm chart for Kubernetes
     digest: 65022bc0f87702622070dd4c48e5cac6adf369ca42ee2c49583881291dd2ce64
@@ -157,6 +187,16 @@ entries:
   manager:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-11-06T08:48:35.195292478Z"
+    description: A Helm chart for Kubernetes
+    digest: eb47023b7084d8d0d0b6f139eaee93131ba5cf3c98bdd5b10a59a0b54f2f88c6
+    name: manager
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/manager-0.1.7/manager-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-11-02T01:30:40.673896366Z"
     description: A Helm chart for Kubernetes
     digest: f2000ba873669d0f04fb305ad35598dbecda78f065ae76a77da27abec8c1d997
@@ -196,6 +236,16 @@ entries:
     - https://github.com/lich158/tx-java-app/releases/download/manager-0.1.1/manager-0.1.1.tgz
     version: 0.1.1
   nacos-config:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-11-06T08:48:35.282060267Z"
+    description: A Helm chart for Kubernetes
+    digest: 10b9d67c6f082f6f3c1c0db8b8dd558d18e95a2b0700659a13fb9ec69f565c77
+    name: nacos-config
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/nacos-config-0.1.8/nacos-config-0.1.8.tgz
+    version: 0.1.8
   - apiVersion: v2
     appVersion: 0.1.0
     created: "2024-11-06T08:39:00.517599379Z"
@@ -259,6 +309,16 @@ entries:
   nginx:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-11-06T08:48:35.415573206Z"
+    description: A Helm chart for Kubernetes
+    digest: 3012bb5230d183947ad61964c36c04cdc034f271199fa4c7b2e3a4323f63fdaa
+    name: nginx
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/nginx-0.1.5/nginx-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-11-01T07:47:30.421023542Z"
     description: A Helm chart for Kubernetes
     digest: 852ddb0ddb085727787184ab982c309c0c65204a0c28d2d257ba5c3fa6a04f6f
@@ -288,6 +348,16 @@ entries:
     - https://github.com/lich158/tx-java-app/releases/download/nginx-0.1.1/nginx-0.1.1.tgz
     version: 0.1.1
   push:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-11-06T08:48:35.613904921Z"
+    description: A Helm chart for Kubernetes
+    digest: cd4007fb65ca74c25a349cb7cfbc3b8e1a8a6c6162f7b937853c9255d7f3f842
+    name: push
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/push-0.1.7/push-0.1.7.tgz
+    version: 0.1.7
   - apiVersion: v2
     appVersion: 0.1.0
     created: "2024-11-02T07:36:30.620636615Z"
@@ -338,4 +408,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/push-0.1.1/push-0.1.1.tgz
     version: 0.1.1
-generated: "2024-11-06T08:39:00.517673467Z"
+generated: "2024-11-06T08:48:35.614029004Z"
