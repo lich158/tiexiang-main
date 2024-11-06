@@ -5,6 +5,13 @@ namespace: manager-system
 nacosGroup: DEFAULT_GROUP
 nacosNamespace: base-test
 
+
+image:
+  repository: 192.168.2.4:30002/initnacos/allconfig
+  pullPolicy: IfNotPresent #Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: latest
+
 configdata: |
   kubernetes:
     node:
