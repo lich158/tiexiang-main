@@ -198,6 +198,16 @@ entries:
   nacos-config:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-11-06T08:11:05.596119222Z"
+    description: A Helm chart for Kubernetes
+    digest: 749459ca109fe48a3346f5639a7e88dfa3b03872e8cf25b23c049c25253c7349
+    name: nacos-config
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/nacos-config-0.1.6/nacos-config-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-11-05T09:03:53.732112316Z"
     description: A Helm chart for Kubernetes
     digest: 5e77fd936b847711e8b897d2403db1b10423205513c1480f2a33b39d9eb767a2
@@ -318,4 +328,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/push-0.1.1/push-0.1.1.tgz
     version: 0.1.1
-generated: "2024-11-05T09:03:53.732183008Z"
+generated: "2024-11-06T08:11:05.596201786Z"
