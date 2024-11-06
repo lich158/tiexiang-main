@@ -9,7 +9,7 @@ spec:
         - name: nacos-config
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["bash", "-c", "python3 create-db.py && python3 gateway-cns.py && \
+          command: ["bash", "-c", "python3 create-db.py && python3 gateway.py && \
                     python3 emqx-api.py && python3 eesu.py && python3 dmsu.py && \
                     python3 auth.py && python3 push.py"]
           volumeMounts:

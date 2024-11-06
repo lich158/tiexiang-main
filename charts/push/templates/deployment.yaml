@@ -21,32 +21,6 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
-      initContainers:
-        - name: push-init
-          image: "{{ .Values.initimage.repository }}:{{ .Values.initimage.tag }}"
-          imagePullPolicy: {{ .Values.initimage.pullPolicy }}
-          command: ["python3", "/app/push.py"]
-          volumeMounts:
-            - name: {{ .Values.configMapName }}
-              mountPath: /app/config  # 容器中的路径
-          env:
-            - name: DATA_ID
-              value: {{ .Values.nacos.dataId | quote}}
-            - name: APP_NAME
-              value: {{ .Values.app.name | quote}}
-            - name: SERVER_PORT
-              value: {{ .Values.app.serverPort | quote}}
-            - name: NACOS_GROUP
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ .Values.configMapName }}
-                  key: NACOS_GROUP
-            - name: NACOS_NAMESPACE
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ .Values.configMapName }}
-                  key: NACOS_NAMESPACE
-
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
