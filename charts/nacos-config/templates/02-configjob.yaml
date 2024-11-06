@@ -7,7 +7,7 @@ spec:
     spec:
       containers:
         - name: nacos-config
-          image: 192.168.2.4:30002/initnacos/allconfig
+          image: 192.168.2.4:30002/initnacos/allconfig:latest
           imagePullPolicy: IfNotPresent
           command: ["bash", "-c", "python3 create-db.py && python3 gateway-cns.py && \
                     python3 emqx-api.py && python3 eesu.py && python3 dmsu.py && \
