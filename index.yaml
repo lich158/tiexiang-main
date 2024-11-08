@@ -187,6 +187,16 @@ entries:
   manager:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-11-08T02:48:37.926912063Z"
+    description: A Helm chart for Kubernetes
+    digest: 590b72f57520a708f12d8c82ed02dd99ad2e79a893dafa64c9eb664d6478e8ea
+    name: manager
+    type: application
+    urls:
+    - https://github.com/lich158/tx-java-app/releases/download/manager-0.1.8/manager-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-11-06T08:48:35.195292478Z"
     description: A Helm chart for Kubernetes
     digest: eb47023b7084d8d0d0b6f139eaee93131ba5cf3c98bdd5b10a59a0b54f2f88c6
@@ -418,4 +428,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/push-0.1.1/push-0.1.1.tgz
     version: 0.1.1
-generated: "2024-11-06T08:58:49.77665578Z"
+generated: "2024-11-08T02:48:38.05449725Z"
