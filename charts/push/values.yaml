@@ -5,26 +5,13 @@
 replicaCount: 1
 
 image:
-  repository: 192.168.1.204:30002/app/tx-push-test
+  repository: 192.168.3.31:30002/new/tx-push-test
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v1.0"
 
-initimage:
-  repository: 192.168.1.211:30002/initnacos/push
-  tag: latest
-  pullPolicy: IfNotPresent
-# Nacos 配置
-nacos:
-  dataId: "tx-push.yaml"
-
-# 应用程序配置
-app:
-  name: "tx-push"
-  serverPort: "31104"
-
 service:
-  port: "31004"
+  port: 31104
 
 resources:
   limits:

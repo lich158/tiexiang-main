@@ -1,25 +1,23 @@
-# Default values for auth.
+# Default values for aesu.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
 
 image:
-  repository: 192.168.3.31:30002/new/tx-auth-test
+  repository: 192.168.3.31:30002/new/tx-aesu
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: v1.0
+  tag: "v1.0"
+
+# Deployment and service configurations
+service:
+  port: 31106
 
 resources:
   limits:
     memory: 5Gi
   requests:
     memory: 5Gi
-
-service:
-  type: NodePort
-  port: "31002"
-
-
+    
 configMapName: nacos-configmap
-

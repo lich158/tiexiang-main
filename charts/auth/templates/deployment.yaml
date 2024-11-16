@@ -27,9 +27,8 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["java","-Dfile.encoding=utf-8", "-jar", "/app/tx-auth.jar"]
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -39,7 +38,3 @@ spec:
                 name: {{ .Values.configMapName }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      volumes:
-        - name: nacos-configmap
-          configMap:
-            name:  {{ .Values.configMapName }}

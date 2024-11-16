@@ -7,28 +7,129 @@ spec:
     spec:
       containers:
         - name: nacos-config
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["bash", "-c", "python3 create-db.py && python3 gateway.py && \
-                    python3 emqx-api.py && python3 eesu.py && python3 dmsu.py && \
-                    python3 auth.py && python3 push.py"]
+          image: "{{ .Values.image.repository }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           volumeMounts:
             - name: nacosconfigmap
               mountPath: /app/config  # 容器中的路径
           env:
-          - name: NACOS_GROUP
+            - name: AESU_DATA_ID
+              value: {{ .Values.aesu.dataid | quote }}
+            - name: AESU_APP_NAME
+              value: {{ .Values.aesu.appname | quote }}
+            - name: AESU_SERVER_PORT
+              value: {{ .Values.aesu.serverport | quote }}
+            - name: AUTH_DATA_ID
+              value: {{ .Values.auth.dataid | quote }}
+            - name: AUTH_APP_NAME
+              value: {{ .Values.auth.appname | quote }}
+            - name: AUTH_SERVER_PORT
+              value: {{ .Values.auth.serverport | quote }}
+            - name: MYSQL_DATABASES
+              value: {{ .Values.mysql.database | quote }}
+            - name: DMSU_DATA_ID
+              value: {{ .Values.dmsu.dataid | quote }}
+            - name: DMSU_APP_NAME
+              value: {{ .Values.dmsu.appname | quote }}
+            - name: DMSU_SERVER_PORT
+              value: {{ .Values.dmsu.serverport | quote }}
+            - name: MQTT_IMAGE_ID
+              value: {{ .Values.mqtt.imageid | quote }}
+            - name: MQTT_IMAGE_NAME
+              value: {{ .Values.mqtt.imagename | quote }}
+            - name: MQTT_USERNAME
+              value: {{ .Values.mqtt.username | quote }}
+            - name: MQTT_PASSWORD
+              value: {{ .Values.mqtt.password | quote }}
+            - name: MQTT_CLIENT_ID
+              value: {{ .Values.mqtt.clientid | quote }}
+            - name: MQTT_QOS
+              value: {{ .Values.mqtt.qos | quote }}
+            - name: MQTT_TOPIC
+              value: {{ .Values.mqtt.topic | quote }}
+            - name: PUBLISH_SERVER_IMAGE
+              value: {{ .Values.publish.image | quote }}
+            - name: CK_DATABASE_NAME
+              value: {{ .Values.ck.databaseName | quote }}
+            - name: LEVEL_0
+              value: {{ .Values.levels.level0 | quote }}
+            - name: LEVEL_1
+              value: {{ .Values.levels.level1 | quote }}
+            - name: LEVEL_2
+              value: {{ .Values.levels.level2 | quote }}
+            - name: LEVEL_3
+              value: {{ .Values.levels.level3 | quote }}
+            - name: LEVEL_4
+              value: {{ .Values.levels.level4 | quote }}
+            - name: LEVEL_5
+              value: {{ .Values.levels.level5 | quote }}
+            - name: LEVEL_6
+              value: {{ .Values.levels.level6 | quote }}
+            - name: STAT_LOGIN_USERNAME
+              value: {{ .Values.statview.username | quote }}
+            - name: STAT_LOGIN_PASSWORD
+              value: {{ .Values.statview.password | quote }}
+            - name: EXPIRATION_DAYS
+              value: {{ .Values.expiration.days | quote }}
+            - name: EXPIRATION_LEVEL
+              value: {{ .Values.expiration.level | quote }}
+            - name: EESU_DATA_ID
+              value: {{ .Values.eesu.dataid | quote }}
+            - name: EESU_APP_NAME
+              value: {{ .Values.eesu.appname | quote }}
+            - name: EESU_SERVER_PORT
+              value: {{ .Values.eesu.serverport | quote }}
+            - name: DAY_OFFSET
+              value: {{ .Values.dayoffset | quote }}
+            - name: MSG_LEVEL
+              value: {{ .Values.msg.level | quote }}
+            - name: EMQX_PTOPIC
+              value: {{ .Values.emqx.ptopic | quote }}
+            - name: EMQX_STOPIC
+              value: {{ .Values.emqx.stopic | quote }}
+            - name: EMQX_ATOPIC
+              value: {{ .Values.emqx.atopic | quote }}
+            - name: EMQX_PPERMISSION
+              value: {{ .Values.emqx.ppermission | quote }}
+            - name: EMQX_SPERMISSION
+              value: {{ .Values.emqx.spermission | quote }}
+            - name: EMQX_APERMISSION
+              value: {{ .Values.emqx.apermission | quote }}
+            - name: GATEWAY_DATA_ID
+              value: {{ .Values.gateway.dataid | quote }}
+            - name: GATEWAY_APP_NAME
+              value: {{ .Values.gateway.appname | quote }}
+            - name: GATEWAY_SERVER_PORT
+              value: {{ .Values.gateway.serverport | quote }}
+            - name: PUSH_DATA_ID
+              value: {{ .Values.push.dataid | quote }}
+            - name: PUSH_APP_NAME
+              value: {{ .Values.push.appname | quote }}
+            - name: PUSH_SERVER_PORT
+              value: {{ .Values.push.serverport | quote }}
+            - name: STA_DATA_ID
+              value: {{ .Values.statistic.dataid | quote }}
+            - name: STA_APP_NAME
+              value: {{ .Values.statistic.appname | quote }}
+            - name: STA_SERVER_PORT
+              value: {{ .Values.statistic.serverport | quote }}
+            - name: WRA_DATA_ID
+              value: {{ .Values.wrapper.dataid | quote }}
+            - name: MINUTEOFFSET
+              value: {{ .Values.eesu.minuteOffset | quote }}
+            - name: NACOS_GROUP
               valueFrom:
                 configMapKeyRef:
-                  name: {{ .Values.configMapName }}
+                  name: "{{ .Values.name }}"
                   key: NACOS_GROUP
             - name: NACOS_NAMESPACE
               valueFrom:
                 configMapKeyRef:
-                  name: {{ .Values.configMapName }}
+                  name: "{{ .Values.name }}"
                   key: NACOS_NAMESPACE
       volumes:
         - name: nacosconfigmap
           configMap:
-            name: {{ .Values.name }}
+            name: "{{ .Values.name }}"
       restartPolicy: OnFailure
   backoffLimit: 3

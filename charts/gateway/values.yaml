@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: 192.168.1.204:30002/app/tx-gateway-test
+  repository: 192.168.3.31:30002/new/tx-gateway-test
   pullPolicy: IfNotPresent #Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: v1.0
@@ -23,27 +23,4 @@ service:
 
 configMapName: nacos-configmap
 
-initimage:
-  repository: 192.168.1.211:30002/initnacos/gateway
-  tag: latest
-  pullPolicy: IfNotPresent #Always
-# MySQL configuration for initContainer
-mysql:
-  databases: "db1,db2,db3"
-
-# Nacos configuration for initContainer
-nacos:
-  dataId: "tx-gateway.yaml"
-  appPort: "31100"
-  appName: "tx-gateway"
-
-emqx:
-  username: manager
-  password: manager
-  ptopic: '#'
-  stopic: '#'
-  atopic: '#'
-  ppermission: allow
-  spermission: allow
-  apermission: allow
 

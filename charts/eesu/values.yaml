@@ -5,34 +5,10 @@
 replicaCount: 1
 
 image:
-  repository: 192.168.1.204:30002/app/tx-eesu-test
+  repository: 192.168.3.31:30002/new/tx-eesu-test
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v1.0"
-
-initimage:
-  repository: 192.168.1.211:30002/initnacos/eesu
-  tag: latest
-  pullPolicy: IfNotPresent
-
-# Nacos configuration
-nacos:
-  dataId: "tx-eesu.yaml"
-
-
-
-# MQTT configuration
-mqtt:
-  username: "manager"
-  password: "manager"
-  clientId: "mqttx_b88ba638"
-  qos: "2"
-  topic: "exception/#"
-
-# Application configuration
-app:
-  name: "tx-eesu"
-  serverPort: "31103"
 
 # Deployment and service configurations
 service:

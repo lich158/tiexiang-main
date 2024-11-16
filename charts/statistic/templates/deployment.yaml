@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "eesu.fullname" . }}
+  name: {{ include "statistic.fullname" . }}
   labels:
-    {{- include "eesu.labels" . | nindent 4 }}
+    {{- include "statistic.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      {{- include "eesu.selectorLabels" . | nindent 6 }}
+      {{- include "statistic.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -16,7 +16,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "eesu.labels" . | nindent 8 }}
+        {{- include "statistic.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -25,7 +25,6 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["java","-Dfile.encoding=utf-8", "-jar", "/app/tx-eesu.jar"]
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
