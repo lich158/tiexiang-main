@@ -92,6 +92,17 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/auth-0.1.0/auth-0.1.0.tgz
     version: 0.1.0
+  bcsu:
+  - apiVersion: v2
+    appVersion: 0.0.0
+    created: "2024-11-19T02:21:04.743424322Z"
+    description: A Helm chart for Kubernetes
+    digest: 4f78125cc9a260114e8ba541f4066d497f8163b41f40802f2bb9315e97ad8a6b
+    name: bcsu
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/bcsu-0.1.0/bcsu-0.1.0.tgz
+    version: 0.1.0
   dmsu:
   - apiVersion: v2
     appVersion: 0.1.0
@@ -195,6 +206,17 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/eeu-0.1.1/eeu-0.1.1.tgz
     version: 0.1.1
+  fcu:
+  - apiVersion: v2
+    appVersion: 0.0.0
+    created: "2024-11-19T02:21:04.903439553Z"
+    description: A Helm chart for Kubernetes
+    digest: 49ebd95977f412e9b156f3484107a4aa589779d64c247325259375b8a6f4dabd
+    name: fcu
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/fcu-0.1.0/fcu-0.1.0.tgz
+    version: 0.1.0
   gateway:
   - apiVersion: v2
     appVersion: 0.1.0
@@ -561,4 +583,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/statistic-0.1.0/statistic-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-19T02:04:41.637734843Z"
+generated: "2024-11-19T02:21:04.903541703Z"
