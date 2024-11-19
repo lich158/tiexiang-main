@@ -33,10 +33,8 @@ spec:
               value: {{ .Values.dmsu.appname | quote }}
             - name: DMSU_SERVER_PORT
               value: {{ .Values.dmsu.serverport | quote }}
-            - name: MQTT_IMAGE_ID
-              value: {{ .Values.mqtt.imageid | quote }}
-            - name: MQTT_IMAGE_NAME
-              value: {{ .Values.mqtt.imagename | quote }}
+            - name: BCSU_IMAGE_NAME
+              value: {{ .Values.bcsu.imagename | quote }}
             - name: MQTT_USERNAME
               value: {{ .Values.mqtt.username | quote }}
             - name: MQTT_PASSWORD
@@ -117,16 +115,40 @@ spec:
               value: {{ .Values.wrapper.dataid | quote }}
             - name: MINUTEOFFSET
               value: {{ .Values.eesu.minuteOffset | quote }}
+            - name: HTTP_CONNECT_TIMEOUT
+              value: {{ .Values.http.connectTimeout | quote }}
+            - name: HTTP_READ_TIMEOUT
+              value: {{ .Values.http.readTimeout | quote }}
+            - name: HTTP_WRITE_TIMEOUT
+              value: {{ .Values.http.writeTimeout | quote }}
+            - name: HELM_REPO
+              value: {{ .Values.helm.repoName | quote }}
+            - name: HELM_REPO_URL
+              value: {{ .Values.helm.repoUrl | quote }}
+            - name: HELM_CONFIG_PATH
+              value: {{ .Values.helm.configPath | quote }}
+            - name: HELM_FCU_CHART_NAME
+              value: {{ .Values.helm.fcuChartName | quote }}
+            - name: HELM_BCSU_CHART_NAME
+              value: {{ .Values.helm.bcsuChartName | quote }}
+            - name: HELM_CA_CERT_PATH
+              value: {{ .Values.helm.caCertPath | quote }}
+            - name: HELM_NAMESPACE_PATH
+              value: {{ .Values.helm.namespacePath | quote }}
+            - name: CU_FCU_NAMESPACE
+              value: {{ .Values.cu.fcuNamespace | quote }}
+            - name: CU_PUBLISH_SERVER_NAMES
+              value: {{ .Values.cu.publishServerNames | quote }}
+            - name: CU_BCSU_NAMESPACE
+              value: {{ .Values.cu.bcsuNamespace | quote }}
+            - name: CU_DEPLOYMENT_REPLICAS
+              value: {{ .Values.cu.deploymentReplicas | quote }}
             - name: NACOS_GROUP
-              valueFrom:
-                configMapKeyRef:
-                  name: "{{ .Values.name }}"
-                  key: NACOS_GROUP
+              value: {{ .Values.nacos.group | quote }}
             - name: NACOS_NAMESPACE
-              valueFrom:
-                configMapKeyRef:
-                  name: "{{ .Values.name }}"
-                  key: NACOS_NAMESPACE
+              value: {{ .Values.nacos.namespace | quote }}
+            - name: NACOS_SERVER_ADDR
+              value:  {{ (fromYaml .Values.configdata).applications.nacos.apiserver.DNS | default "nacos-cs.nacos-system" }}
       volumes:
         - name: nacosconfigmap
           configMap:

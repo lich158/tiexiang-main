@@ -1,13 +1,13 @@
 # values.yaml
 name: nacos-configmap
-namespace: manager-system
 
-nacosGroup: DEFAULT_GROUP
-nacosNamespace: base-test
+nacos:
+  group: DEFAULT_GROUP
+  namespace: base-test
 
 image:
-  repository: 192.168.3.31:30002/initnacos/allconfig:v1.0
-  pullPolicy: IfNotPresent #Always
+  repository: tiexiang.io/initnacos/allconfig:v1.0
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
 
 aesu:
@@ -28,9 +28,10 @@ dmsu:
   appname: "tx-dmsu"
   serverport: "31101"
 
+bcsu:
+  imagename: "tiexiang.io/bcsu/bcsu-image:latest"
+
 mqtt:
-  imageid: "sha256:cac0e703f48b6ef0d760e02eb2bc1af9075dcfdc321f4760eb60518f4172a0ef"
-  imagename: "tiexiang.io/tiexiang/bcsu-image:latest"
   username: "manager"
   password: "manager"
   clientid: "mqtt-client-id"
@@ -38,7 +39,7 @@ mqtt:
   topic: "$queue/exception/#"
 
 publish:
-  image: "publish-server:latest"
+  image: "publish-server:v1.0.5"
 
 ck:
   databaseName: "default"
@@ -96,6 +97,29 @@ statistic:
 
 wrapper:
   dataid: "tx-wrapper-api.yaml"
+
+http:
+  connectTimeout: "30"
+  readTimeout: "30"
+  writeTimeout: "30"
+helm:
+  repoName: "tx_helm_charts"
+  repoUrl: "http://192.168.3.210:8081/repository/my-repo"
+  configPath: "/tmp/helm-config/"
+  fcuChartName: "fcu"
+  bcsuChartName: "bcsu"
+  caCertPath: "/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+  namespacePath: "/run/secrets/kubernetes.io/serviceaccount/namespace"
+  tokenPath: "/run/secrets/kubernetes.io/serviceaccount/token"
+cu:
+  fcuNamespace: "fcu-system"
+  publishServerNames: "fcu-if"
+  bcsuNamespace: "bcsu-system"
+  deploymentReplicas: "1"
+
+
+
+
 
 configdata: |
   kubernetes:

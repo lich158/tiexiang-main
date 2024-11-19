@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: 192.168.3.31:30002/new/tx-auth-test
+  repository: tiexiang.io/new/tx-auth
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: v1.0
@@ -21,5 +21,8 @@ service:
   port: "31002"
 
 
-configMapName: nacos-configmap
+nacos:
+  group: DEFAULT_GROUP
+  namespace: base-test
+  server: nacos-cs.nacos-system
 

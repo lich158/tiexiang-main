@@ -29,9 +29,13 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          envFrom:
-            - configMapRef:
-                name: {{ .Values.configMapName }}
+          env:
+            - name: NACOS_GROUP
+              value: {{ .Values.nacos.group | quote }}
+            - name: NACOS_NAMESPACE
+              value: {{ .Values.nacos.namespace | quote }}
+            - name: NACOS_SERVER_ADDR
+              value: {{ .Values.nacos.server | quote }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
  
