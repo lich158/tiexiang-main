@@ -288,6 +288,17 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/gateway-0.1.0/gateway-0.1.0.tgz
     version: 0.1.0
+  livegbs:
+  - apiVersion: v2
+    appVersion: v3.4.9
+    created: "2024-11-19T06:07:31.45402282Z"
+    description: A Helm chart for Kubernetes
+    digest: 2e698ede9d540a5081989ef44fb17d0c5f60567d2ac3e608eac679053c193295
+    name: livegbs
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/livegbs-0.1.0/livegbs-0.1.0.tgz
+    version: 0.1.0
   manager:
   - apiVersion: v2
     appVersion: 0.1.0
@@ -583,4 +594,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/statistic-0.1.0/statistic-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-19T02:21:04.903541703Z"
+generated: "2024-11-19T06:07:31.454122275Z"
