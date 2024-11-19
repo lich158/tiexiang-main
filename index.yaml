@@ -3,6 +3,16 @@ entries:
   aesu:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-11-19T02:04:40.278313019Z"
+    description: A Helm chart for Kubernetes
+    digest: 9eb01a493d008b34645d7c2616d178b196e7acd1996db75d227eebd9abe7df39
+    name: aesu
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/aesu-0.1.1/aesu-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-11-16T03:07:21.751097332Z"
     description: A Helm chart for Kubernetes
     digest: f39f48c045c317218fc70c11bb0038b56e5f2fced87733194956899ed7085181
@@ -85,6 +95,16 @@ entries:
   dmsu:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-11-19T02:04:40.648210498Z"
+    description: A Helm chart for Kubernetes
+    digest: fb1f00f054b956f99bdc69ba2c99355b93d5843a4eb9eed37b36e26726f22d87
+    name: dmsu
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/dmsu-0.1.1/dmsu-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-11-16T03:07:21.938188357Z"
     description: A Helm chart for Kubernetes
     digest: e9affcad50ea2897fe1b34ee077bf14dc7c46c4908e934c90d7d9b337572239a
@@ -124,6 +144,16 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/eesu-0.1.4/eesu-0.1.4.tgz
     version: 0.1.4
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-11-19T02:04:40.799303986Z"
+    description: A Helm chart for Kubernetes
+    digest: 091961018db0404faac9d8bc32d252d7c0b0567299e82b33da15d40124c87ec2
+    name: eesu
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/eesu-0.1.1/eesu-0.1.1.tgz
+    version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2024-11-16T03:07:22.024282521Z"
@@ -513,6 +543,16 @@ entries:
   statistic:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-11-19T02:04:41.637631059Z"
+    description: A Helm chart for Kubernetes
+    digest: 296a574e1df3c33f881e41175052b0fd6f58300254a9a48c5ba56bd120bf2d91
+    name: statistic
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/statistic-0.1.1/statistic-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-11-16T03:07:22.496448668Z"
     description: A Helm chart for Kubernetes
     digest: 73321c2cd59efaf94b71c42546b87d580d4a30c71e48eb687a1e8f6dc51eea67
@@ -521,4 +561,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/statistic-0.1.0/statistic-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-16T03:07:22.496560898Z"
+generated: "2024-11-19T02:04:41.637734843Z"
