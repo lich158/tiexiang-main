@@ -3,6 +3,16 @@ entries:
   aesu:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-11-21T03:50:42.098800498Z"
+    description: A Helm chart for Kubernetes
+    digest: 3529167c5e8e656a8c32588ced2ff57b908511230742603dc6e8cfc96d6e9fb6
+    name: aesu
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/aesu-0.1.2/aesu-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-11-19T02:04:40.278313019Z"
     description: A Helm chart for Kubernetes
     digest: 9eb01a493d008b34645d7c2616d178b196e7acd1996db75d227eebd9abe7df39
@@ -22,6 +32,16 @@ entries:
     - https://github.com/lich158/tx-java-app/releases/download/aesu-0.1.0/aesu-0.1.0.tgz
     version: 0.1.0
   auth:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-11-21T03:50:42.183825578Z"
+    description: A Helm chart for Kubernetes
+    digest: 19c8dd6c7fd7a58b0fb32a4f4ad9d39d5aef1d7dff4acb5354d98db5353f8ef1
+    name: auth
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/auth-0.1.2/auth-0.1.2.tgz
+    version: 0.1.2
   - apiVersion: v2
     appVersion: 0.1.0
     created: "2024-10-10T06:48:10.375624922Z"
@@ -45,6 +65,16 @@ entries:
   bcsu:
   - apiVersion: v2
     appVersion: 0.0.0
+    created: "2024-11-21T03:50:42.308944399Z"
+    description: A Helm chart for Kubernetes
+    digest: 6ecc10b7451ed9e472a3441e80334c36af2d00eb886879150e633a1c66e21f9f
+    name: bcsu
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/bcsu-0.1.1/bcsu-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.0.0
     created: "2024-11-19T02:21:04.743424322Z"
     description: A Helm chart for Kubernetes
     digest: 4f78125cc9a260114e8ba541f4066d497f8163b41f40802f2bb9315e97ad8a6b
@@ -54,6 +84,16 @@ entries:
     - https://github.com/lich158/tiexiang-main/releases/download/bcsu-0.1.0/bcsu-0.1.0.tgz
     version: 0.1.0
   dmsu:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-11-21T03:50:42.431735524Z"
+    description: A Helm chart for Kubernetes
+    digest: dd46e83c43b02ff09643c31774b2297396a4d77d7a9b20ed9b8362acc70e73c3
+    name: dmsu
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/dmsu-0.1.2/dmsu-0.1.2.tgz
+    version: 0.1.2
   - apiVersion: v2
     appVersion: 0.1.0
     created: "2024-11-19T02:04:40.648210498Z"
@@ -77,6 +117,16 @@ entries:
   eesu:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-11-21T03:50:42.523511729Z"
+    description: A Helm chart for Kubernetes
+    digest: 947607a835f224df1f708a15b12ed1f556844b49e628e7abc5959fe39da50bab
+    name: eesu
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/eesu-0.1.2/eesu-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-11-19T02:04:40.799303986Z"
     description: A Helm chart for Kubernetes
     digest: 091961018db0404faac9d8bc32d252d7c0b0567299e82b33da15d40124c87ec2
@@ -98,6 +148,16 @@ entries:
   fcu:
   - apiVersion: v2
     appVersion: 0.0.0
+    created: "2024-11-21T03:50:42.62605794Z"
+    description: A Helm chart for Kubernetes
+    digest: 89ec456ab7b63b9335ced1935bf924549efbe93f77a26ddfc98ef11f5508a094
+    name: fcu
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/fcu-0.1.1/fcu-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.0.0
     created: "2024-11-19T02:21:04.903439553Z"
     description: A Helm chart for Kubernetes
     digest: 49ebd95977f412e9b156f3484107a4aa589779d64c247325259375b8a6f4dabd
@@ -107,6 +167,16 @@ entries:
     - https://github.com/lich158/tiexiang-main/releases/download/fcu-0.1.0/fcu-0.1.0.tgz
     version: 0.1.0
   gateway:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-11-21T03:50:42.737659168Z"
+    description: A Helm chart for Kubernetes
+    digest: 15b5e90cc008c5c408d4ea131c68ded269ba115cd4a05138626f02c147b7a735
+    name: gateway
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/gateway-0.1.2/gateway-0.1.2.tgz
+    version: 0.1.2
   - apiVersion: v2
     appVersion: 0.1.0
     created: "2024-10-10T06:48:10.615154999Z"
@@ -173,6 +243,16 @@ entries:
   push:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-11-21T03:50:42.828042139Z"
+    description: A Helm chart for Kubernetes
+    digest: a881f91b11b36a0f7bc3def0994b761011f740ad34248833217ee5b7c73faeec
+    name: push
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/push-0.1.2/push-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-10-10T06:48:11.078134516Z"
     description: A Helm chart for Kubernetes
     digest: 5daba65ef18999f67529d4a16ae2c567a1e944ad3ff3aa85085abb83ab5df005
@@ -194,6 +274,16 @@ entries:
   statistic:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-11-21T03:50:42.927174105Z"
+    description: A Helm chart for Kubernetes
+    digest: 72ee47bd647bb2487d18785a3703f9c6b84960df59be4be6a4520209451913a3
+    name: statistic
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/statistic-0.1.2/statistic-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-11-19T02:04:41.637631059Z"
     description: A Helm chart for Kubernetes
     digest: 296a574e1df3c33f881e41175052b0fd6f58300254a9a48c5ba56bd120bf2d91
@@ -212,4 +302,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/statistic-0.1.0/statistic-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-19T09:00:32.110105433Z"
+generated: "2024-11-21T03:50:42.927229709Z"
