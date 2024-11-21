@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: tiexiang.io/new/tx-gateway
+  repository: tiexiang.io/app/tx-gateway
   pullPolicy: IfNotPresent #Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: v1.0
