@@ -6,8 +6,8 @@ nacos:
   namespace: base-test
 
 image:
-  repository: tiexiang.io/initnacos/allconfig:v1.0
-  pullPolicy: Always
+  repository: tiexiang.io/app/tx-nacosconfig:v1.0
+  pullPolicy: IfNotPresent #Always
   # Overrides the image tag whose default is the chart appVersion.
 
 aesu:
