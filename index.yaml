@@ -200,6 +200,16 @@ entries:
   livegbs:
   - apiVersion: v2
     appVersion: v3.4.9
+    created: "2024-11-21T07:58:50.312931086Z"
+    description: A Helm chart for Kubernetes
+    digest: 76ca9b106dd6988bed9761b1e31bc97d963280322a1a7ea9bfc553df053b4abf
+    name: livegbs
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/livegbs-0.1.1/livegbs-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: v3.4.9
     created: "2024-11-19T06:07:31.45402282Z"
     description: A Helm chart for Kubernetes
     digest: 2e698ede9d540a5081989ef44fb17d0c5f60567d2ac3e608eac679053c193295
@@ -342,4 +352,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/statistic-0.1.0/statistic-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-21T07:21:23.968988116Z"
+generated: "2024-11-21T07:58:50.312981059Z"
