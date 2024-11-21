@@ -86,6 +86,14 @@ service:
     port: 10000
     nodeport: 32767
     protocol: UDP
+  - name: sip-tcp
+    port: 15060
+    nodeport: 32766
+    protocol: TCP
+  - name: sip-udp
+    port: 15060
+    nodeport: 32766
+    protocol: UDP
 
 livecms:     
   livenessProbe:
