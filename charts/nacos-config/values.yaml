@@ -21,7 +21,7 @@ auth:
   serverport: "31102"
 
 mysql:
-  database: "tx-auth,tx-manager"
+  database: "tx_auth,tx_manager"
 
 dmsu:
   dataid: "tx-dmsu.yaml"
