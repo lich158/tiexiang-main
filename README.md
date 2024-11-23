@@ -19,3 +19,7 @@ helm install  tx8  ./charts/push -n manager-test
  helm uninstall  tx6 -n manager-test && 
  helm uninstall  tx7 -n manager-test && 
  helm uninstall  tx8 -n manager-test
+
+
+
+
