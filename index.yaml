@@ -86,6 +86,16 @@ entries:
   dmsu:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-11-28T02:38:13.321510064Z"
+    description: A Helm chart for Kubernetes
+    digest: f071b4d2436cfcbfbc717a20f19b8faaabf7a48202748b07e7e0abbf9adf5427
+    name: dmsu
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/dmsu-0.1.3/dmsu-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-11-21T03:50:42.431735524Z"
     description: A Helm chart for Kubernetes
     digest: dd46e83c43b02ff09643c31774b2297396a4d77d7a9b20ed9b8362acc70e73c3
@@ -362,4 +372,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/statistic-0.1.0/statistic-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-22T01:44:19.448784361Z"
+generated: "2024-11-28T02:38:13.321593049Z"
