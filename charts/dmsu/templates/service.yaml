@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dmsu.fullname" . }}
+  labels:
+    {{- include "dmsu.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+  - name: dmsu
+    protocol: TCP
+    port: {{ .Values.service.port }}
+    targetPort: {{ .Values.service.port }}
+  selector:
+    {{- include "dmsu.selectorLabels" . | nindent 4 }}

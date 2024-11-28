@@ -12,6 +12,7 @@ image:
 
 # Service and deployment configurations
 service:
+  type: ClusterIP
   port: 31101
 
 resources:
@@ -20,7 +21,18 @@ resources:
   requests:
     memory: 5Gi
 
-
+#This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: "tx-dmsu"
+  
 nacos:
   group: DEFAULT_GROUP
   namespace: base-test

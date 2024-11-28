@@ -1,0 +1,16 @@
+{{- if .Values.serviceAccount.create -}}
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: {{ include "dmsu.fullname" . }}
+  labels:
+    {{- include "dmsu.labels" . | nindent 4 }}
+subjects:
+- kind: ServiceAccount
+  name: {{ include "dmsu.serviceAccountName" . }}
+  namespace: {{ $.Release.Namespace }}
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+{{- end }}
