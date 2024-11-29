@@ -22,6 +22,10 @@ auth:
 
 mysql:
   database: "tx_auth,tx_manager"
+  # initDB:
+  #   nodeSelector:
+  #     kubernetes.io/hostname: worker1
+  #   mysqlDataPath: /data
 
 dmsu:
   dataid: "tx-dmsu.yaml"

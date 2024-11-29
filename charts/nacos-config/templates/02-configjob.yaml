@@ -5,13 +5,21 @@ metadata:
 spec:
   template:
     spec:
+      imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+      {{- if .Values.image.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml .Values.image.imagePullSecrets | nindent 8 }}
+      {{- end }}    
       containers:
         - name: nacos-config
           image: "{{ .Values.image.repository }}"
-          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           volumeMounts:
             - name: nacosconfigmap
               mountPath: /app/config  # 容器中的路径
+            {{- with .Values.mysql.initDB.mysqlDataPath }}
+            - name: mysqlinitdb
+              mountPath: /data/mysql_backup  # 容器中的路径
+            {{- end }}
           env:
             - name: AESU_DATA_ID
               value: {{ .Values.aesu.dataid | quote }}
@@ -147,9 +155,18 @@ spec:
               value: {{ .Values.nacos.namespace | quote }}
             - name: NACOS_SERVER_ADDR
               value:  {{ (fromYaml .Values.configdata).applications.nacos.apiserver.DNS | default "nacos-cs.nacos-system" }}
+      {{- with .Values.mysql.initDB.nodeSelector }}
+      nodeSelector: {{ toYaml . | nindent 8 }}
+      {{- end }}
       volumes:
         - name: nacosconfigmap
           configMap:
             name: "{{ .Values.name }}"
+        {{- with .Values.mysql.initDB.mysqlDataPath }}
+        - name: mysqlinitdb
+          hostPath:
+            path: "{{ . }}"
+            type: Directory  
+        {{- end }}
       restartPolicy: OnFailure
   backoffLimit: 3
