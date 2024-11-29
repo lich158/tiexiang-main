@@ -22,10 +22,12 @@ auth:
 
 mysql:
   database: "tx_auth,tx_manager"
-  # initDB:
+  initDB:
   #   nodeSelector:
   #     kubernetes.io/hostname: worker1
-  #   mysqlDataPath: /data
+    mysqlData: {}
+  #     path: /mysql/backup_data
+  #     file: mysql_backup.tar.gz
 
 dmsu:
   dataid: "tx-dmsu.yaml"

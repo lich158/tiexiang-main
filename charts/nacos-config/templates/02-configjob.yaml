@@ -16,11 +16,17 @@ spec:
           volumeMounts:
             - name: nacosconfigmap
               mountPath: /app/config  # 容器中的路径
-            {{- with .Values.mysql.initDB.mysqlDataPath }}
+            {{- with .Values.mysql.initDB.mysqlData }}
             - name: mysqlinitdb
-              mountPath: /data/mysql_backup  # 容器中的路径
+              mountPath: {{ .path }}  # 容器中的路径
             {{- end }}
           env:
+            {{- with .Values.mysql.initDB.mysqlData }}
+            - name: MYSQL_BACKUP_PATH
+              value: {{ .path }}
+            - name: MYSQL_BACKUP_PATH
+              value: {{ .file }}
+            {{- end }}
             - name: AESU_DATA_ID
               value: {{ .Values.aesu.dataid | quote }}
             - name: AESU_APP_NAME
@@ -162,7 +168,7 @@ spec:
         - name: nacosconfigmap
           configMap:
             name: "{{ .Values.name }}"
-        {{- with .Values.mysql.initDB.mysqlDataPath }}
+        {{- with .Values.mysql.initDB.mysqlData.path }}
         - name: mysqlinitdb
           hostPath:
             path: "{{ . }}"
