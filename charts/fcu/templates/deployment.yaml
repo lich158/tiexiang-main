@@ -32,6 +32,39 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
+        - name: publish-server
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          {{- with .Values.publishServer }}
+          image: {{ .image.name }}
+          imagePullPolicy: {{ .image.pullPolicy }}
+          {{- end }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+          volumeMounts:
+            - mountPath: /app/config
+              name: config
+            - mountPath: /app/data
+              name: data           
+          {{- with .Values.volumeMounts }}              
+            {{- toYaml . | nindent 12 }}
+          {{- end }}   
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - /bin/bash
+                  - '-c'
+                  - sleep 10 
         - name: fcu-server
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
@@ -62,33 +95,7 @@ spec:
             name: data
           {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
-          {{- end }}
-        - name: publish-server
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          {{- with .Values.publishServer }}
-          image: {{ .image.name }}
-          imagePullPolicy: {{ .image.pullPolicy }}
-          {{- end }}
-          livenessProbe:
-            {{- toYaml .Values.livenessProbe | nindent 12 }}
-          readinessProbe:
-            {{- toYaml .Values.readinessProbe | nindent 12 }}
-          resources:
-            limits:
-              cpu: 100m
-              memory: 128Mi
-            requests:
-              cpu: 10m
-              memory: 10Mi
-          volumeMounts:
-            - mountPath: /app/config
-              name: config
-            - mountPath: /app/data
-              name: data           
-          {{- with .Values.volumeMounts }}              
-            {{- toYaml . | nindent 12 }}
-          {{- end }}          
+          {{- end }}    
       volumes:
       - configMap:
           defaultMode: 420
