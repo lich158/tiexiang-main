@@ -231,6 +231,16 @@ entries:
   nacos-config:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-11-29T02:19:09.84859761Z"
+    description: A Helm chart for Kubernetes
+    digest: f7cc0036be1d0cc7a89c9e61177cdc87530911f3f5d32bbca1b6e00a95ecae99
+    name: nacos-config
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/nacos-config-0.1.7/nacos-config-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-11-21T07:21:23.968930448Z"
     description: A Helm chart for Kubernetes
     digest: 7a71a6994fe2aa86bbbcd31c87f5845b8d5fa3ee7ca43dec09a808be6713bac6
@@ -280,6 +290,16 @@ entries:
     - https://github.com/lich158/tiexiang-main/releases/download/nacos-config-0.1.2/nacos-config-0.1.2.tgz
     version: 0.1.2
   nginx:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-11-29T02:19:09.953381704Z"
+    description: A Helm chart for Kubernetes
+    digest: c21c77c85f75aba67b074f3219ea6414d653957d038bc1b3b13e897a6ac8288a
+    name: nginx
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/nginx-0.1.3/nginx-0.1.3.tgz
+    version: 0.1.3
   - apiVersion: v2
     appVersion: 0.1.0
     created: "2024-11-22T01:44:19.448704392Z"
@@ -372,4 +392,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/statistic-0.1.0/statistic-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-28T02:38:13.321593049Z"
+generated: "2024-11-29T02:19:09.953456664Z"
