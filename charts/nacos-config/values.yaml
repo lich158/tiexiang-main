@@ -29,7 +29,7 @@ dmsu:
   serverport: "31101"
 
 bcsu:
-  imagename: "tiexiang.io/bcsu/bcsu-image:latest"
+  imagename: "tiexiang.io/bcsu/bcsu-image:v1.0.12"
 
 mqtt:
   username: "manager"
@@ -39,7 +39,7 @@ mqtt:
   topic: "$queue/exception/#"
 
 publish:
-  image: "publish-server:v1.0.5"
+  image: "publish-server:v1.0.6"
 
 ck:
   databaseName: "default"
@@ -104,7 +104,6 @@ http:
   writeTimeout: "30"
 helm:
   repoName: "tx_helm_charts"
-  repoUrl: "http://192.168.3.210:8081/repository/my-repo"
   configPath: "/tmp/helm-config/"
   fcuChartName: "fcu"
   bcsuChartName: "bcsu"
@@ -116,10 +115,6 @@ cu:
   publishServerNames: "fcu-if"
   bcsuNamespace: "bcsu-system"
   deploymentReplicas: "1"
-
-
-
-
 
 configdata: |
   kubernetes:

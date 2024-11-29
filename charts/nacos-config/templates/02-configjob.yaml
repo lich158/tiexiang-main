@@ -123,8 +123,6 @@ spec:
               value: {{ .Values.http.writeTimeout | quote }}
             - name: HELM_REPO
               value: {{ .Values.helm.repoName | quote }}
-            - name: HELM_REPO_URL
-              value: {{ .Values.helm.repoUrl | quote }}
             - name: HELM_CONFIG_PATH
               value: {{ .Values.helm.configPath | quote }}
             - name: HELM_FCU_CHART_NAME

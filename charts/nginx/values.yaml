@@ -15,3 +15,13 @@ service:
   nodePort: 31008
   nodePort2: 31010
   nodePort3: 31011
+
+window:
+  k8surl: "192.168.3.31"
+
+livegbs:
+  proxyip: "192.168.3.210"
+  proxyport: "10000"
+
+miniodns: minio.minio-system
+gatewaydns: tx-gateway.manager-system

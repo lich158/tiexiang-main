@@ -1,0 +1,170 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: baseurl-configmap
+data: 
+  baseUrl.js: |
+    window.BaseUrl = '/api';
+    window.LiveUrl = 'http://{{ .Values.window.k8surl }}:31011/api';  
+    window.BaseWs = 'ws://{{ .Values.window.k8surl }}:31008/api/tx-push/wsmsgpush';  
+    window.BaseImg = 'http://{{ .Values.window.k8surl }}:31010/'; 
+    window.BigDataScreen = 'http://{{ .Values.window.k8surl }}:31008/monitor/';
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configjson-configmap
+data: 
+  config.json: |
+    {
+      "baseURL": "http://{{ .Values.window.k8surl }}:31008/api",
+      "imgURL": "http://{{ .Values.window.k8surl }}:31010",
+      "wsURL": "http://{{ .Values.window.k8surl }}:31008/api/tx-push/wsmsgpush/",
+      "videoURL": "http://{{ .Values.window.k8surl }}:31011/api"
+    }
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-configmap
+data:
+  nginx.conf: |
+    user  root;
+    worker_processes  auto;
+
+    error_log  /var/log/nginx/error.log warn;
+    pid        /var/run/nginx.pid;
+
+
+    events {
+        worker_connections  1024;
+    }
+
+
+
+    #业务平台
+    http {
+        include       mime.types;
+        default_type  application/octet-stream;
+
+        #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+        #                  '$status $body_bytes_sent "$http_referer" '
+        #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+        #access_log  logs/access.log  main;
+        sendfile        on;
+        #tcp_nopush     on;
+        #keepalive_timeout  0;
+        keepalive_timeout  65;
+        proxy_read_timeout 3600s;
+        proxy_send_timeout 3600s;
+        #gzip  on;
+        # (配置请求体缓存区大小)
+        client_max_body_size 1024M;
+        #(设置客户端请求体最大值)
+        client_body_buffer_size 1024M;
+        fastcgi_intercept_errors on;
+
+    #后台
+    server {
+            listen       80;
+            # server_name  a.liangangwuliu.cn;
+            # ssl                  on;
+            # ssl_certificate      sslkey/liangangwuliu_cn.crt;
+            # ssl_certificate_key  sslkey/liangangwuliu_cn.key;
+            location /manager {
+                alias /usr/share/nginx/html/manager;
+                    #root   /home/java-test/dist;
+                index  index.html index.htm;
+                #try_files $uri $uri/ /index.html;
+            }
+
+            location /monitor {
+                alias /usr/share/nginx/html/monitor;
+                    #root   /home/java-test/dist;
+                index  index.html index.htm;
+                #try_files $uri $uri/ /index.html;
+            }
+
+            location /api/live {
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header REMOTE-HOST $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                #    proxy_pass http://tx-live:10000;
+            }
+            location /api/ {
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header REMOTE-HOST $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_pass http://{{ .Values.gatewaydns }}:31100/;
+            }
+
+      }
+
+    #图片
+        server {
+            listen       19000;
+
+            location / {
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+                proxy_set_header Host $http_host;
+                proxy_ssl_verify off;
+                proxy_connect_timeout 300;
+                proxy_http_version 1.1;
+                proxy_set_header Connection "";
+                chunked_transfer_encoding off;
+                proxy_pass  https://{{ .Values.miniodns }}:443/;
+            }
+
+            # location /minio/ {
+            #     proxy_pass  https://minio.minio-system:443/login;
+            #     proxy_set_header  Host  $host;
+            #     proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
+            #     proxy_redirect default;
+            #     proxy_buffering off;
+            #     client_max_body_size 1024m;
+            #     proxy_connect_timeout 1;
+            # }
+
+        }
+
+    #视频
+        server {
+            listen       19001;
+
+            location / {
+                proxy_pass  http://{{ .Values.livegbs.proxyip }}:{{ .Values.livegbs.proxyport }}/;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header REMOTE-HOST $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_http_version 1.1;
+                # add_header 'Access-Control-Allow-Origin' 'http://192.168.1.154:31008';
+                add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,userid,username';
+                if ($request_method = 'OPTIONS') {
+                    add_header 'Access-Control-Allow-Origin' '*';
+                    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+                    add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,userid,username';
+                    add_header 'Access-Control-Max-Age' 1728000;
+                    add_header 'Content-Type' 'text/plain charset=UTF-8';
+                    add_header 'Content-Length' 0;
+                    return 204;
+                }
+            }
+        }
+    }
+
+
+
