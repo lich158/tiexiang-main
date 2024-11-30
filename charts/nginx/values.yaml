@@ -10,8 +10,12 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v1.0"
 
+
+
 service:
-  type: NodePort
+  annotations: 
+    lb.kubesphere.io/v1alpha1: openelb
+  type: LoadBalancer
   nodePort: 31008
   nodePort2: 31010
   nodePort3: 31011

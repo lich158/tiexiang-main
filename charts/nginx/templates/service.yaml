@@ -4,6 +4,13 @@ metadata:
   name: {{ include "nginx.fullname" . }}
   labels:
     {{- include "nginx.labels" . | nindent 4 }}
+  {{- if eq .Values.service.type "LoadBalancer" }}
+  {{- with .Values.service.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- end }}
+
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -11,16 +18,22 @@ spec:
     protocol: TCP
     port: 80
     targetPort: 80
+    {{- if and (eq .Values.service.type "NodePort") (.Values.service.nodePort) }}
     nodePort: {{ .Values.service.nodePort }}
+    {{- end }}
   - name: service-port2
     protocol: TCP
     port: 19000
     targetPort: 19000
+    {{- if and (eq .Values.service.type "NodePort") (.Values.service.nodePort) }}
     nodePort: {{ .Values.service.nodePort2 }}
+    {{- end }}
   - name: service-port3
     protocol: TCP
     port: 19001
     targetPort: 19001
+    {{- if and (eq .Values.service.type "NodePort") (.Values.service.nodePort) }}
     nodePort: {{ .Values.service.nodePort3 }}
+    {{- end }}
   selector:
     {{- include "nginx.selectorLabels" . | nindent 4 }}
