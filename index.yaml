@@ -363,6 +363,16 @@ entries:
   nginx:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2024-12-03T09:39:47.731344402Z"
+    description: A Helm chart for Kubernetes
+    digest: 3db96e424d64b29f6d7aab81a689e6873040bdbe45a14224d7672c90fe6b2b4f
+    name: nginx
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/nginx-0.1.6/nginx-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2024-12-03T08:51:07.77070716Z"
     description: A Helm chart for Kubernetes
     digest: 5c3c108235ea2652055c19058b07c2f21c9ad637d47378e8ff3edddc189535ba
@@ -483,4 +493,4 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/statistic-0.1.0/statistic-0.1.0.tgz
     version: 0.1.0
-generated: "2024-12-03T09:18:41.609201589Z"
+generated: "2024-12-03T09:39:47.731443096Z"
