@@ -1,33 +1,6 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: baseurl-configmap
-data: 
-  baseUrl.js: |
-    window.BaseUrl = '/api';
-    window.LiveUrl = 'http://{{ .Values.window.k8surl }}:31011/api';  
-    window.BaseWs = 'ws://{{ .Values.window.k8surl }}:31008/api/tx-push/wsmsgpush';  
-    window.BaseImg = 'http://{{ .Values.window.k8surl }}:31010/'; 
-    window.BigDataScreen = 'http://{{ .Values.window.k8surl }}:31008/monitor/';
-
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: configjson-configmap
-data: 
-  config.json: |
-    {
-      "baseURL": "http://{{ .Values.window.k8surl }}:31008/api",
-      "imgURL": "http://{{ .Values.window.k8surl }}:31010",
-      "wsURL": "http://{{ .Values.window.k8surl }}:31008/api/tx-push/wsmsgpush/",
-      "videoURL": "http://{{ .Values.window.k8surl }}:31011/api"
-    }
-
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
   name: nginx-configmap
 data:
   nginx.conf: |

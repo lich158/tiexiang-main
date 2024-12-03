@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: 192.168.3.31:30002/app/tx-nginx
+  repository: tiexiang.io/app/tx-nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v1.0"
@@ -19,7 +19,7 @@ service:
   nodePort: 31008
   nodePort2: 31010
   nodePort3: 31011
-  
+
 livegbs:
   proxyip: "192.168.3.210"
   proxyport: "10000"
