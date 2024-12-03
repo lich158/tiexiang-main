@@ -135,14 +135,18 @@ spec:
               value: {{ .Values.http.readTimeout | quote }}
             - name: HTTP_WRITE_TIMEOUT
               value: {{ .Values.http.writeTimeout | quote }}
-            - name: HELM_REPO
-              value: {{ .Values.helm.repoName | quote }}
+            - name: VM_NEXUS_IP
+              value: {{ .Values.helm.repoUrl | quote }}
             - name: HELM_CONFIG_PATH
               value: {{ .Values.helm.configPath | quote }}
             - name: HELM_FCU_CHART_NAME
               value: {{ .Values.helm.fcuChartName | quote }}
+            - name: HELM_FCU_CHART_VERSION
+              value: {{ .Values.helm.fcuHelmChartVersion | quote }}  
             - name: HELM_BCSU_CHART_NAME
               value: {{ .Values.helm.bcsuChartName | quote }}
+            - name: HELM_BCSU_CHART_VERSION
+              value: {{ .Values.helm.bcsuHelmChartVersion | quote }}
             - name: HELM_CA_CERT_PATH
               value: {{ .Values.helm.caCertPath | quote }}
             - name: HELM_NAMESPACE_PATH

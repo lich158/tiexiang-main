@@ -26,15 +26,9 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           volumeMounts:
-            - mountPath: /usr/share/nginx/html/manager/js/baseUrl.js  # 容器中的路径
-              name: baseurl-configmap
-              subPath: baseUrl.js
             - mountPath: /etc/nginx/nginx.conf  # 容器中的路径
               name: nginx-configmap
               subPath: nginx.conf
-            - mountPath: /usr/share/nginx/html/monitor/config.json  # 容器中的路径
-              name: configjson-configmap
-              subPath: config.json
           ports:
           - containerPort: 80
           - containerPort: 19000
@@ -42,15 +36,9 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
-        - name: baseurl-configmap
-          configMap:
-            name: baseurl-configmap
         - name: nginx-configmap
           configMap:
             name: nginx-configmap
-        - name: configjson-configmap
-          configMap:
-            name: configjson-configmap
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -6,7 +6,7 @@ nacos:
   namespace: base-test
 
 image:
-  repository: tiexiang.io/app/tx-nacosconfig:v1.0
+  repository: tiexiang.io/app/tx-nacosconfig:v1.1
   pullPolicy: IfNotPresent #Always
   # Overrides the image tag whose default is the chart appVersion.
 
@@ -109,10 +109,12 @@ http:
   readTimeout: "30"
   writeTimeout: "30"
 helm:
-  repoName: "tx_helm_charts"
+  repoUrl: "192.168.2.210"
   configPath: "/tmp/helm-config/"
   fcuChartName: "fcu"
+  fcuHelmChartVersion: "v1.0.6"
   bcsuChartName: "bcsu"
+  bcsuHelmChartVersion: "v1.0.12"
   caCertPath: "/run/secrets/kubernetes.io/serviceaccount/ca.crt"
   namespacePath: "/run/secrets/kubernetes.io/serviceaccount/namespace"
   tokenPath: "/run/secrets/kubernetes.io/serviceaccount/token"
