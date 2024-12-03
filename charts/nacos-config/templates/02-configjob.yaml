@@ -151,6 +151,8 @@ spec:
               value: {{ .Values.helm.caCertPath | quote }}
             - name: HELM_NAMESPACE_PATH
               value: {{ .Values.helm.namespacePath | quote }}
+            - name: HELM_TOKEN_PATH
+              value: {{ .Values.helm.tokenPath | quote }}
             - name: CU_FCU_NAMESPACE
               value: {{ .Values.cu.fcuNamespace | quote }}
             - name: CU_PUBLISH_SERVER_NAMES
