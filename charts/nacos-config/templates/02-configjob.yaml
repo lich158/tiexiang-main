@@ -47,6 +47,8 @@ spec:
               value: {{ .Values.dmsu.appname | quote }}
             - name: DMSU_SERVER_PORT
               value: {{ .Values.dmsu.serverport | quote }}
+            - name: DMSU_MINIO_BUCKETNAME
+              value: {{ .Values.dmsu.bucketname | quote }}
             - name: BCSU_IMAGE_NAME
               value: {{ .Values.bcsu.imagename | quote }}
             - name: MQTT_USERNAME

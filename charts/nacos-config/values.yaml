@@ -33,6 +33,7 @@ dmsu:
   dataid: "tx-dmsu.yaml"
   appname: "tx-dmsu"
   serverport: "31101"
+  bucketname: "images"
 
 bcsu:
   imagename: "tiexiang.io/bcsu/bcsu-image:v1.0.12"
