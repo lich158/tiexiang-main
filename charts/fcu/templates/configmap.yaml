@@ -38,6 +38,7 @@ data:
             "Username": {{ $data.MQTTClient.Username | quote}}
         },
         "MinioClient": {
+            "secure": {{ $data.MinioClient.secure | quote}},,
             "AccessKey": {{ $data.MinioClient.AccessKey | quote}},
             "CertCheck": {{ $data.MinioClient.CertCheck | quote}},
             "Endpoint": {{ $data.MinioClient.Endpoint | quote}},
