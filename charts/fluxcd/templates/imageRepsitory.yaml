@@ -1,0 +1,13 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageRepository
+metadata:
+  name: {{ include "fluxcd.fullname" . }}
+  labels:
+    {{- include "fluxcd.labels" . | nindent 4 }}
+spec:
+  image: {{ .Values.imageRepository.image | default (include "fluxcd.imageRepoUrl" .) }}
+  interval: {{ .Values.imageRepository.interval }}
+  {{- if .Values.imageRepository.secretRef }}
+  secretRef:
+    name: {{ .Values.imageRepository.secretRef.name | default "tx-application-image" }}
+  {{- end }}

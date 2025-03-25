@@ -1,0 +1,15 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImagePolicy
+metadata:
+  name: {{ include "fluxcd.fullname" . }}
+  labels:
+    {{- include "fluxcd.labels" . | nindent 4 }}
+spec:
+  imageRepositoryRef:
+    name: {{ .Values.imagePolicy.imageRepositoryRef | default (include "fluxcd.fullname" .) }}
+  filterTags:
+    pattern: '{{ .Values.imagePolicy.filterTags.pattern  | default (include "fluxcd.pattern" .) }}'
+    extract: '{{ .Values.imagePolicy.filterTags.extract }}'
+  policy:
+    numerical:
+      order: {{ .Values.imagePolicy.policy.numerical.order }}

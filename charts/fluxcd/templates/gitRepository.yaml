@@ -1,0 +1,22 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: {{ include "fluxcd.fullname" . }}
+  labels:
+    {{- include "fluxcd.labels" . | nindent 4 }}
+spec:
+  interval: {{ .Values.gitRepository.interval | default "1m0s" }}
+  {{- if .Values.gitRepository.ref }}
+  ref:
+    branch: {{ .Values.gitRepository.ref.branch }}
+  {{- end }}
+  url: {{ .Values.gitRepository.url }}
+  {{- if .Values.gitRepository.ignore }}
+  ignore: |
+    {{ .Values.gitRepository.ignore | nindent 4 }}
+  {{- end }}
+  {{- if .Values.gitRepository.secretRef }}
+  secretRef:
+    name: {{ .Values.gitRepository.secretRef.name | default "tx-application-git" }}
+  {{- end }}
