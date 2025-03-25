@@ -236,6 +236,17 @@ entries:
     urls:
     - https://github.com/lich158/tiexiang-main/releases/download/fcu-0.1.0/fcu-0.1.0.tgz
     version: 0.1.0
+  fluxcd:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2025-03-25T06:18:47.079906847Z"
+    description: A Helm chart for Kubernetes
+    digest: b0c44cd4ea41ca936534bcd236a6a87beba9cbf060fc811683bed21f8e80ce81
+    name: fluxcd
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/fluxcd-0.1.0/fluxcd-0.1.0.tgz
+    version: 0.1.0
   gateway:
   - apiVersion: v2
     appVersion: 0.1.0
@@ -563,4 +574,15 @@ entries:
     urls:
     - https://github.com/lich158/tx-java-app/releases/download/statistic-0.1.0/statistic-0.1.0.tgz
     version: 0.1.0
-generated: "2025-02-19T03:12:11.637835276Z"
+  tx-app:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-03-25T06:18:47.256072015Z"
+    description: A Helm chart for Kubernetes
+    digest: caae8427d4e32f1170b4c06fbbe5d55894b32ea824cf19e603820287be544d8b
+    name: tx-app
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/tx-app-0.1.0/tx-app-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-03-25T06:18:47.25624496Z"
