@@ -19,5 +19,5 @@ spec:
   {{- end }}
   {{- if .Values.gitRepository.secretRef }}
   secretRef:
-    name: {{ .Values.gitRepository.secretRef.name | default "tx-application-git" }}
+    name: {{ .Values.gitRepository.secretRef.name | default (printf "%s-git" (include "fluxcd.fullname" .)) }}
   {{- end }}

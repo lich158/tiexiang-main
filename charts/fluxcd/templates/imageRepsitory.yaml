@@ -10,5 +10,5 @@ spec:
   interval: {{ .Values.imageRepository.interval }}
   {{- if .Values.imageRepository.secretRef }}
   secretRef:
-    name: {{ .Values.imageRepository.secretRef.name | default "tx-application-image" }}
+    name: {{ .Values.imageRepository.secretRef.name | default (printf "%s-image" (include "fluxcd.fullname" .))}}
   {{- end }}
