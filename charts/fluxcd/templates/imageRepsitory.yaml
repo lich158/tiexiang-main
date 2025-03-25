@@ -2,7 +2,7 @@ apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageRepository
 metadata:
   name: {{ include "fluxcd.fullname" . }}
-  namespce: {{ .Values.namespace | default "default" }}
+  namespace: {{ .Values.namespace | default "default" }}
   labels:
     {{- include "fluxcd.labels" . | nindent 4 }}
 spec:
