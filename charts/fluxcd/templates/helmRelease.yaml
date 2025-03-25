@@ -2,6 +2,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: {{ include "fluxcd.fullname" . }}
+  namespce: {{ .Values.namespace | default "default" }}
   labels:
     {{- include "fluxcd.labels" . | nindent 4 }}
 spec:

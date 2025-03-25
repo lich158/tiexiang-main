@@ -1,3 +1,4 @@
+namespace: defalut
 projectAddress: gitlab.gxtxkj.com
 projectGroup: application/progress-web
 project: tx-progress-web

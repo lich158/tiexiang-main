@@ -3,6 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: {{ include "fluxcd.fullname" . }}
+  namespce: {{ .Values.namespace | default "default" }}
   labels:
     {{- include "fluxcd.labels" . | nindent 4 }}
 spec:
