@@ -1,0 +1,12 @@
+ingress:
+  className: "nginx"
+  hosts:
+    - host: APP-DOMAIN.gxtxkj.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+imagePullSecrets:
+  - name: IMAGE-SECRET
+image:
+  repository: registry.gxtxkj.com/application/progress-web/tx-progress-web # {"$imagepolicy": "POLICY-NAMESPACE:POLICY-NAME:name"}
+  tag: nanjingbei2-fb87bba-1741155743 # {"$imagepolicy": "POLICY-NAMESPACE:POLICY-NAME:tag"}
