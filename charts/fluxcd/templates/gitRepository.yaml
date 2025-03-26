@@ -15,7 +15,7 @@ spec:
   url: {{ .Values.gitRepository.url }}
   {{- if .Values.gitRepository.ignore }}
   ignore: |
-    {{ .Values.gitRepository.ignore | nindent 4 }}
+    {{ .Values.gitRepository.ignore | trim | nindent 4 }}
   {{- end }}
   {{- if .Values.gitRepository.secretRef }}
   secretRef:
