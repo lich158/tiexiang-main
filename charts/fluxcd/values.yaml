@@ -9,6 +9,7 @@ repositoryAddress: registry.gxtxkj.com
 gitRepository:
   url: https://gitlab.gxtxkj.com/application/progress-web/tx-progress-web.git
   ref: 
+    enabled: true
     # branch: nanjingbei2
   ignore: |
     # exclude all
