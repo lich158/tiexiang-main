@@ -26,7 +26,7 @@ spec:
   {{- end }}
   policySelector:
     matchLabels:
-      {{- include "fluxcd.labels" . | nindent 4 }}
+      {{- include "fluxcd.labels" . | nindent 6 }}
   update:
     path: {{ .Values.imageUpdateAutomation.update.path }}
     strategy: {{ .Values.imageUpdateAutomation.update.strategy }}
