@@ -74,6 +74,23 @@ imageRepository:
     enabled: true
     # name: tx-application
 
+# 定义imageUpdateAutomation
+imageUpdateAutomation:
+  git:
+    branch: main
+    author:
+      email: fluxcdbot@gxtxkj.com
+      name: fluxcdbot
+  interval: 6m0s
+  sourceRef:
+    enabled: true
+    # kind: GitRepository
+    # name: flux-system
+    # namespace: flux-system
+  update:
+    path: ./clusters/tx
+    strategy: Setters
+
 secret:
   git: 
     password: Z2xkdC1EUWZwbmNZaGRrVWFnY3pnLXNyQQ==

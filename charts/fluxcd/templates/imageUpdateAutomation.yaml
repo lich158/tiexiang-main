@@ -1,0 +1,31 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta2
+kind: ImageUpdateAutomation
+metadata:
+  name: {{ include "fluxcd.fullname" . }}
+  namespace: {{ .Values.namespace | default "default" }}
+  labels:
+    {{- include "fluxcd.labels" . | nindent 4 }}
+spec:
+  git:
+    checkout:
+      ref:
+        branch: {{ .Values.imageUpdateAutomation.git.branch }}
+    commit:
+      author:
+        email: {{ .Values.imageUpdateAutomation.git.author.email }}
+        name: {{ .Values.imageUpdateAutomation.git.author.name }}
+      messageTemplate: '{{`{{range .Changed.Changes}}{{print .OldValue}} -> {{println .NewValue}}{{end}}`}}'
+    push:
+      branch: {{ .Values.imageUpdateAutomation.git.branch }}
+  interval: {{ .Values.imageUpdateAutomation.interval }}
+  {{- if .Values.imageRepository.secretRef }}
+  sourceRef:
+    kind: {{ .Values.imageUpdateAutomation.sourceRef.kind | default "GitRepository" }}
+    name: {{ .Values.imageUpdateAutomation.sourceRef.name | default "flux-system" }}
+    namespace: {{ .Values.imageUpdateAutomation.sourceRef.namespace | default "flux-system" }}
+  {{- end }}
+  policySelector:
+    {{- include "fluxcd.labels" . | nindent 4 }}
+  update:
+    path: {{ .Values.imageUpdateAutomation.update.path }}
+    strategy: {{ .Values.imageUpdateAutomation.update.strategy }}

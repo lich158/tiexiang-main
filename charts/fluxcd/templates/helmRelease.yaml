@@ -26,4 +26,4 @@ spec:
   targetNamespace: {{ .Values.helmRelease.targetNamespace | default .Release.Namespace }}
   values:
     {{- tpl .Values.helmValues . | replace "POLICY-NAMESPACE:POLICY-NAME" (printf "%s:%s" .Release.Namespace (include "fluxcd.fullname" .)) | replace "IMAGE-SECRET" (printf "%s-%s" (include "fluxcd.fullname" .) "imagepull"  ) | replace "APP-DOMAIN" .Values.appDomain | nindent 4 }}
-
+   
