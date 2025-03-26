@@ -22,7 +22,7 @@ spec:
   install:
     createNamespace: {{ .Values.helmRelease.install.createNamespace }}
   interval: {{ .Values.helmRelease.interval }}
-  releaseName: {{ .Values.helmRelease.releaseName }}
-  targetNamespace: {{ .Values.helmRelease.targetNamespace }}
+  releaseName: {{ .Values.helmRelease.releaseName | default (include "fluxcd.fullname" .) }}
+  targetNamespace: {{ .Values.helmRelease.targetNamespace | default .Release.Namespace }}
   values:
     {{- toYaml .Values.helmValues | nindent 4 }}

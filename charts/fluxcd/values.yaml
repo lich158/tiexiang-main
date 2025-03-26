@@ -9,24 +9,26 @@ repositoryAddress: registry.gxtxkj.com
 gitRepository:
   url: https://gitlab.gxtxkj.com/application/progress-web/tx-progress-web.git
   ref: 
-    branch: nanjingbei2
+    # branch: nanjingbei2
   ignore: |
     # exclude all
     /*
     # include charts directory
     !/smart-admin-web-javascript/deploy/
   secretRef:
-    name: tx-application-git
+    enabled: true
+  #   name: tx-application-git
 
 # 定义helmRelease
 helmRelease:
   chart: smart-admin-web-javascript/deploy
   interval: 1m0s
-  releaseName: progress-web
-  targetNamespace: progress-nanjingbei2
+  # releaseName: progress-web
+  # targetNamespace: progress-nanjingbei2
   install:
     createNamespace: true
-  # sourceRef:
+  sourceRef:
+    enabled: true
   #   name: progress-nanjingbei2-progress-web
     # namespace: progress-nanjingbei2
 
@@ -67,7 +69,7 @@ imageRepository:
   # image: registry.gxtxkj.com/application/progress-web/tx-progress-web
   interval: 5m0s
   secretRef:
-    enable: true
+    enabled: true
     # name: tx-application
 
 secret:

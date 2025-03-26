@@ -10,7 +10,7 @@ spec:
   interval: {{ .Values.gitRepository.interval | default "1m0s" }}
   {{- if .Values.gitRepository.ref }}
   ref:
-    branch: {{ .Values.gitRepository.ref.branch }}
+    branch: {{ .Values.gitRepository.ref.branch | default .Values.projectBranch }}
   {{- end }}
   url: {{ .Values.gitRepository.url }}
   {{- if .Values.gitRepository.ignore }}
