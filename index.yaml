@@ -239,6 +239,16 @@ entries:
   fluxcd:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2025-03-26T00:58:30.634180816Z"
+    description: A Helm chart for Kubernetes
+    digest: c02f1e5a2723fd00ecf2381a1f08fdf8bdfc6d30ca5adf4a9aa310d00ffc72b5
+    name: fluxcd
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/fluxcd-0.1.4/fluxcd-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2025-03-25T08:58:41.439848413Z"
     description: A Helm chart for Kubernetes
     digest: 5a0d3dd49d605e6aabaa8fa6b454cb2f9eead449349ddd45a3cac6fe8559fbca
@@ -615,4 +625,4 @@ entries:
     urls:
     - https://github.com/lich158/tiexiang-main/releases/download/tx-app-0.1.0/tx-app-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-25T08:58:41.440006738Z"
+generated: "2025-03-26T00:58:30.634299597Z"
