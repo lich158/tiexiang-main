@@ -4,6 +4,7 @@ projectGroup: application/progress-web
 project: tx-progress-web
 projectBranch: nanjingbei2
 repositoryAddress: registry.gxtxkj.com
+appDomain: nanjingbei2
 
 # 定义gitRepository
 gitRepository:
