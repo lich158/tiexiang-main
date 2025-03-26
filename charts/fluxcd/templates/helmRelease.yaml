@@ -11,7 +11,7 @@ spec:
       chart: {{ .Values.helmRelease.chart }}
       reconcileStrategy: ChartVersion
       sourceRef:
-        kind: GitRepository
+        kind: {{ .Values.helmRelease.sourceRef.kind | default "GitRepository" }} 
         {{- if .Values.helmRelease.sourceRef }}
         name: {{ .Values.helmRelease.sourceRef.name | default (include "fluxcd.fullname" .) }}
         namespace: {{ .Values.helmRelease.sourceRef.namespace | default .Release.Namespace }}

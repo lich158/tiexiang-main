@@ -8,6 +8,7 @@ appDomain: nanjingbei2
 
 # 定义gitRepository
 gitRepository:
+  enabled: false
   # url: https://gitlab.gxtxkj.com/application/progress-web/tx-progress-web.git
   ref: 
     enabled: true
@@ -19,7 +20,10 @@ gitRepository:
     !/deploy/
   secretRef:
     enabled: true
-  #   name: tx-application-git
+  #  name: tx-application-git
+helmRepository:
+  enabled: true
+  url: http://192.168.2.210:8081/repository/tiexiang-main
 
 # 定义helmRelease
 helmRelease:
@@ -31,6 +35,7 @@ helmRelease:
     createNamespace: true
   sourceRef:
     enabled: true
+    kind: HelmRepository
   #   name: progress-nanjingbei2-progress-web
     # namespace: progress-nanjingbei2
 

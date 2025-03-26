@@ -1,4 +1,4 @@
----
+{{- if .Values.gitRepository.enabled -}}
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
@@ -21,3 +21,4 @@ spec:
   secretRef:
     name: {{ .Values.gitRepository.secretRef.name | default (printf "%s-git" (include "fluxcd.fullname" .)) }}
   {{- end }}
+{{- end }}

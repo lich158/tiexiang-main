@@ -1,0 +1,13 @@
+{{- if .Values.helmRepository.enabled -}}
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: {{ include "fluxcd.fullname" . }}
+  namespace: {{ .Values.namespace | default "default" }}
+  labels:
+    {{- include "fluxcd.labels" . | nindent 4 }}
+spec:
+  interval: 1m0s
+  timeout: 1m0s
+  url: {{ .Values.helmRepository.url }}
+{{- end }}  
