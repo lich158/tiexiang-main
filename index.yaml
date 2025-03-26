@@ -727,6 +727,16 @@ entries:
   tx-app:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2025-03-26T08:23:44.448305796Z"
+    description: A Helm chart for Kubernetes
+    digest: 06e4189b8baedcb172f582979c88f1adb59a360660a75820f60ffdb878d7a42d
+    name: tx-app
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/tx-app-0.1.1/tx-app-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2025-03-25T06:18:47.256072015Z"
     description: A Helm chart for Kubernetes
     digest: caae8427d4e32f1170b4c06fbbe5d55894b32ea824cf19e603820287be544d8b
@@ -735,4 +745,4 @@ entries:
     urls:
     - https://github.com/lich158/tiexiang-main/releases/download/tx-app-0.1.0/tx-app-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-26T07:10:10.437415973Z"
+generated: "2025-03-26T08:23:44.44845239Z"
