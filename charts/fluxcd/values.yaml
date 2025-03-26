@@ -14,14 +14,14 @@ gitRepository:
     # exclude all
     /*
     # include charts directory
-    !/smart-admin-web-javascript/deploy/
+    !/deploy/
   secretRef:
     enabled: true
   #   name: tx-application-git
 
 # 定义helmRelease
 helmRelease:
-  chart: smart-admin-web-javascript/deploy
+  chart: deploy
   interval: 1m0s
   # releaseName: progress-web
   # targetNamespace: progress-nanjingbei2
