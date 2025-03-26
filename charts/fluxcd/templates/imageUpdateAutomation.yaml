@@ -25,7 +25,8 @@ spec:
     namespace: {{ .Values.imageUpdateAutomation.sourceRef.namespace | default "flux-system" }}
   {{- end }}
   policySelector:
-    {{- include "fluxcd.labels" . | nindent 4 }}
+    matchLabels:
+      {{- include "fluxcd.labels" . | nindent 4 }}
   update:
     path: {{ .Values.imageUpdateAutomation.update.path }}
     strategy: {{ .Values.imageUpdateAutomation.update.strategy }}
