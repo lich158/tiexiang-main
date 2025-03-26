@@ -34,26 +34,26 @@ helmRelease:
 
 # 定义helmValues,helmRelease中helm chart的value内容
 # 通常通过value file的形式传递
-helmValues:
-  ingress:
-    tls:
-      secretName: progress-tls
-      host: progress-nanjingbei2.gxtxkj.com
-    className: "nginx"
-    hosts:
-      - host: progress-nanjingbei2.gxtxkj.com
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-      - host: progress-nanjingbei2.inner.gxtxkj.com
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-  imagePullSecrets:
-    name: tx-application-image
-  image:
-    repository: registry.gxtxkj.com/application/progress-web/tx-progress-web # {"$imagepolicy": "progress-nanjingbei2:progress-nanjingbei2-progress-web:name"}
-    tag: nanjingbei2-fb87bba-1741155743 # {"$imagepolicy": "progress-nanjingbei2:progress-nanjingbei2-progress-web:tag"}
+helmValues: {}
+  # ingress:
+  #   tls:
+  #     secretName: progress-tls
+  #     host: progress-nanjingbei2.gxtxkj.com
+  #   className: "nginx"
+  #   hosts:
+  #     - host: progress-nanjingbei2.gxtxkj.com
+  #       paths:
+  #         - path: /
+  #           pathType: ImplementationSpecific
+  #     - host: progress-nanjingbei2.inner.gxtxkj.com
+  #       paths:
+  #         - path: /
+  #           pathType: ImplementationSpecific
+  # imagePullSecrets:
+  #   name: tx-application-image
+  # image:
+  #   repository: registry.gxtxkj.com/application/progress-web/tx-progress-web # {"$imagepolicy": "progress-nanjingbei2:progress-nanjingbei2-progress-web:name"}
+  #   tag: nanjingbei2-fb87bba-1741155743 # {"$imagepolicy": "progress-nanjingbei2:progress-nanjingbei2-progress-web:tag"}
 
 # 定义imagePolicy
 imagePolicy:

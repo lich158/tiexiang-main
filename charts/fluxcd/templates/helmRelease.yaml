@@ -25,4 +25,5 @@ spec:
   releaseName: {{ .Values.helmRelease.releaseName | default (include "fluxcd.fullname" .) }}
   targetNamespace: {{ .Values.helmRelease.targetNamespace | default .Release.Namespace }}
   values:
-    {{- toYaml .Values.helmValues | nindent 4 }}
+    {{- .Values.helmValues | fromYaml | toYaml | nindent 4 }}
+
