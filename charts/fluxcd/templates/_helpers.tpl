@@ -52,7 +52,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 
 
 {{- define "fluxcd.gitlabRepoUrl" -}}
-{{ .Values.projectAddress }}/{{ .Values.projectGroup }}/{{ .Values.project }}.git
+https://{{ .Values.projectAddress }}/{{ .Values.projectGroup }}/{{ .Values.project }}.git
 {{- end }}
 
 {{- define "fluxcd.imageRepoUrl" -}}

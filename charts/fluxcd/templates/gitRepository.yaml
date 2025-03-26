@@ -12,7 +12,7 @@ spec:
   ref:
     branch: {{ .Values.gitRepository.ref.branch | default .Values.projectBranch }}
   {{- end }}
-  url: {{ .Values.gitRepository.url }}
+  url: {{ .Values.gitRepository.url | default (include "fluxcd.gitlabRepoUrl" .) }}
   {{- if .Values.gitRepository.ignore }}
   ignore: |
     {{ .Values.gitRepository.ignore | trim | nindent 4 }}

@@ -7,7 +7,7 @@ repositoryAddress: registry.gxtxkj.com
 
 # 定义gitRepository
 gitRepository:
-  url: https://gitlab.gxtxkj.com/application/progress-web/tx-progress-web.git
+  # url: https://gitlab.gxtxkj.com/application/progress-web/tx-progress-web.git
   ref: 
     enabled: true
     # branch: nanjingbei2
