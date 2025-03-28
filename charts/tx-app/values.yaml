@@ -72,14 +72,14 @@ resources:
     cpu: 10m
     memory: 10Mi
 
-livenessProbe:
-  httpGet:
-    path: /
-    port: http
-readinessProbe:
-  httpGet:
-    path: /
-    port: http
+livenessProbe: {}
+  # httpGet:
+  #   path: /
+  #   port: http
+readinessProbe: {}
+  # httpGet:
+  #   path: /
+  #   port: http
 
 autoscaling:
   enabled: false
@@ -108,3 +108,8 @@ affinity: {}
 imageSecret: 
   enabled: true
   dockerconfigjson: eyJhdXRocyI6eyJyZWdpc3RyeS5neHR4a2ouY29tIjp7InVzZXJuYW1lIjoidHgtYXBwbGljYXRpb24iLCJwYXNzd29yZCI6ImdsZHQtRFFmcG5jWWhka1VhZ2N6Zy1zckEiLCJhdXRoIjoiZEhndFlYQndiR2xqWVhScGIyNDZaMnhrZEMxRVVXWndibU5aYUdSclZXRm5ZM3BuTFhOeVFRPT0ifX19
+
+configmap:
+  enabled: false
+  
+  

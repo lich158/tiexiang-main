@@ -1,0 +1,13 @@
+{{- if .Values.configmap.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "tx-app.fullname" . }}
+  labels:
+    {{- include "tx-app.labels" . | nindent 4 }}
+data:
+  {{- range $filename, $content := .Values.configmap.data }}
+  {{ $filename }}: |
+    {{- $content | nindent 4 }}
+  {{- end }}
+{{- end }}
