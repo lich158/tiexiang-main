@@ -29,6 +29,48 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          livenessProbe:
+            exec:
+              command:
+              - sh
+              - -c
+              - |
+                SERVICES="{{ .Values.probe.servicesName }}"
+                NAMESPACE_ID="{{ .Values.probe.nacosID }}"
+                NACOS_URL="{{ .Values.probe.nacosUrl }}"
+
+                for service in ${SERVICES}; do
+                  if ! curl -sS -k "${NACOS_URL}?serviceName=${service}&namespaceId=${NAMESPACE_ID}" | grep -q "\"name\":\"${service}\""; then
+                    echo "Service ${service} not found in Nacos!"
+                    exit 1
+                  fi
+                done
+            failureThreshold: {{ .Values.failureThreshold }}
+            initialDelaySeconds: {{ .Values.initialDelaySeconds }}
+            periodSeconds: {{ .Values.periodSeconds }}
+            successThreshold: {{ .Values.successThreshold }}
+            timeoutSeconds: {{ .Values.timeoutSeconds }}
+          readinessProbe:
+            exec:
+              command:
+              - sh
+              - -c
+              - |
+                SERVICES="{{ .Values.probe.servicesName }}"
+                NAMESPACE_ID="{{ .Values.probe.nacosID }}"
+                NACOS_URL="{{ .Values.probe.nacosUrl }}"
+
+                for service in ${SERVICES}; do
+                  if ! curl -sS -k "${NACOS_URL}?serviceName=${service}&namespaceId=${NAMESPACE_ID}" | grep -q "\"name\":\"${service}\""; then
+                    echo "Service ${service} not found in Nacos!"
+                    exit 1
+                  fi
+                done
+            failureThreshold: {{ .Values.failureThreshold }}
+            initialDelaySeconds: {{ .Values.initialDelaySeconds }}
+            periodSeconds: {{ .Values.periodSeconds }}
+            successThreshold: {{ .Values.successThreshold }}
+            timeoutSeconds: {{ .Values.timeoutSeconds }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

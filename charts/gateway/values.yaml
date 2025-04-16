@@ -26,4 +26,13 @@ nacos:
   namespace: base-test
   server: nacos-cs.nacos-system
 
+probe:
+  servicesName: "tx-aesu tx-auth tx-dmsu tx-eesu tx-push tx-statistic"
+  nacosID: "base-test"
+  nacosUrl: "http://nacos-cs.nacos-system:8848/nacos/v1/ns/service"
 
+failureThreshold: 1
+initialDelaySeconds: 10
+periodSeconds: 5
+successThreshold: 1
+timeoutSeconds: 1
