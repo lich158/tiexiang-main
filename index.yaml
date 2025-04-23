@@ -147,6 +147,16 @@ entries:
   eesu:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-04-23T01:56:06.465347484Z"
+    description: A Helm chart for Kubernetes
+    digest: bbcd8c7cc52a27438abb57f7681119ae4ae6787e15f1eb030f0af374655021a9
+    name: eesu
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/eesu-0.1.3/eesu-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-11-21T03:50:42.523511729Z"
     description: A Helm chart for Kubernetes
     digest: 947607a835f224df1f708a15b12ed1f556844b49e628e7abc5959fe39da50bab
@@ -716,6 +726,16 @@ entries:
   statistic:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-04-23T01:56:06.597992415Z"
+    description: A Helm chart for Kubernetes
+    digest: c5bf5fe272f711cfcd3e98052ac7e8ee760d3b31e7242d9016c80440d971ac48
+    name: statistic
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/statistic-0.1.3/statistic-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-11-21T03:50:42.927174105Z"
     description: A Helm chart for Kubernetes
     digest: 72ee47bd647bb2487d18785a3703f9c6b84960df59be4be6a4520209451913a3
@@ -775,4 +795,4 @@ entries:
     urls:
     - https://github.com/lich158/tiexiang-main/releases/download/tx-app-0.1.0/tx-app-0.1.0.tgz
     version: 0.1.0
-generated: "2025-04-16T05:54:13.21727501Z"
+generated: "2025-04-23T01:56:06.598137938Z"
