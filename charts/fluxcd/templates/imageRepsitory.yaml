@@ -8,7 +8,7 @@ metadata:
 spec:
   image: {{ .Values.imageRepository.image | default (include "fluxcd.imageRepoUrl" .) }}
   interval: {{ .Values.imageRepository.interval }}
-  {{- if .Values.imageRepository.secretRef }}
+  {{- if .Values.imageRepository.secretRef.enabled }}
   secretRef:
     name: {{ .Values.imageRepository.secretRef.name | default (printf "%s-image" (include "fluxcd.fullname" .))}}
   {{- end }}
