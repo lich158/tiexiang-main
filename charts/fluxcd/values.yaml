@@ -21,6 +21,7 @@ gitRepository:
   secretRef:
     enabled: true
   #  name: tx-application-git
+  
 helmRepository:
   enabled: true
   url: http://192.168.2.210:8081/repository/tiexiang-main
@@ -76,7 +77,7 @@ imageRepository:
   # image: registry.gxtxkj.com/application/progress-web/tx-progress-web
   interval: 5m0s
   secretRef:
-    enabled: true
+    enabled: false
     # name: tx-application
 
 # 定义imageUpdateAutomation
@@ -98,7 +99,9 @@ imageUpdateAutomation:
 
 secret:
   git: 
+    enabled: false
     password: Z2xkdC1EUWZwbmNZaGRrVWFnY3pnLXNyQQ==
     username: dHgtYXBwbGljYXRpb24=
   image:    
+    enabled: false
     dockerconfigjson: eyJhdXRocyI6eyJyZWdpc3RyeS5neHR4a2ouY29tIjp7InVzZXJuYW1lIjoidHgtYXBwbGljYXRpb24iLCJwYXNzd29yZCI6ImdsZHQtRFFmcG5jWWhka1VhZ2N6Zy1zckEiLCJhdXRoIjoiZEhndFlYQndiR2xqWVhScGIyNDZaMnhrZEMxRVVXWndibU5aYUdSclZXRm5ZM3BuTFhOeVFRPT0ifX19
