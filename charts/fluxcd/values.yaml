@@ -21,7 +21,7 @@ gitRepository:
   secretRef:
     enabled: true
   #  name: tx-application-git
-  
+
 helmRepository:
   enabled: true
   url: http://192.168.2.210:8081/repository/tiexiang-main
@@ -89,10 +89,9 @@ imageUpdateAutomation:
       name: fluxcdbot
   interval: 6m0s
   sourceRef:
-    enabled: true
-    # kind: GitRepository
-    # name: flux-system
-    # namespace: flux-system
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
   update:
     path: ./clusters/tx
     strategy: Setters

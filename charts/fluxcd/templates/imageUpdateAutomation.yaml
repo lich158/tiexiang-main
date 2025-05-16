@@ -18,12 +18,10 @@ spec:
     push:
       branch: {{ .Values.imageUpdateAutomation.git.branch }}
   interval: {{ .Values.imageUpdateAutomation.interval }}
-  {{- if .Values.imageRepository.sourceRef }}
   sourceRef:
     kind: {{ .Values.imageUpdateAutomation.sourceRef.kind | default "GitRepository" }}
     name: {{ .Values.imageUpdateAutomation.sourceRef.name | default "flux-system" }}
     namespace: {{ .Values.imageUpdateAutomation.sourceRef.namespace | default "flux-system" }}
-  {{- end }}
   policySelector:
     matchLabels:
       {{- include "fluxcd.labels" . | nindent 6 }}
