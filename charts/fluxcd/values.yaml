@@ -3,7 +3,7 @@ projectAddress: gitlab.gxtxkj.com
 projectGroup: application/progress-web
 project: tx-progress-web
 projectBranch: nanjingbei2
-repositoryAddress: registry.gxtxkj.com
+repositoryAddress: harbor.gxtxkj.com
 appDomain: nanjingbei2
 
 # 定义gitRepository
