@@ -156,3 +156,61 @@ persistentVolumeClaim:
 
 configMap:
   data: '{"Device":{"DeviceClass":"Radar_Videos","FCUNum":"1836303989153767425","Manufacturer":"dapeng","ScopeClass":"ZhaLanJie"},"Level2Seconds":{"0":12000,"1":600,"2":300,"3":180,"4":60,"5":30,"6":10},"Logger":{"Level":"INFO","LogDir":"log"},"MQTTClient":{"CertFile":"","Host":"emqx-cluster-listeners.emqx-system","Password":"tx1726667868610","Port":"1883","Username":"nnj-yonganzhen-yaz014-1836303989153767425"},"MinioClient":{"AccessKey":"minio","CertCheck":"False","Endpoint":"minio.minio-system:443","SecretKey":"minio123"},"RPCServer":{"IP":"127.0.0.1","Port":"9999"},"Scene":{"BCSUNum":"yaz014","CompanyCode":"nnj","SceneClass":"KaiKuoDi","StationCode":"yonganzhen"}}'
+  CameraSet.json: |
+    {
+        "ca4": {
+            "rtsp_url": "rtsp://admin:Tiexiang@192.168.1.68:554/h264/ch1/main/av_stream",
+            "intrusion_detection_enabled": true,
+            "save_full_image_enabled": true,
+            "save_object_crop_enabled": true,
+            "detection_areas": [
+                [
+                    [
+                        1058,
+                        543
+                    ],
+                    [
+                        1303,
+                        522
+                    ],
+                    [
+                        1555,
+                        804
+                    ],
+                    [
+                        1750,
+                        1227
+                    ],
+                    [
+                        886,
+                        1266
+                    ],
+                    [
+                        1058,
+                        546
+                    ]
+                ]
+            ],
+            "first_stage": {
+                "model": "yolo_stage1n",
+                "iou": 0.5,
+                "confidence": 0.5,
+                "selected_classes": [
+                    "person",
+                    "smog",
+                    "flame"
+                ]
+            },
+            "second_stage": {
+                "model": "yolo_stage2n",
+                "iou": 0.3,
+                "confidence": 0.4,
+                "selected_classes": [
+                    "helmet",
+                    "vest",
+                    "smoking",
+                    "phone"
+                ]
+            }
+        }
+    }
