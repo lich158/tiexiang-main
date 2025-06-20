@@ -75,6 +75,16 @@ entries:
   bcsu:
   - apiVersion: v2
     appVersion: 0.0.0
+    created: "2025-06-20T02:28:11.782129901Z"
+    description: A Helm chart for Kubernetes
+    digest: 8a206c6c8c2487ef4429603b7528322daf3f70dab0ef749b31bd1df7d398c17f
+    name: bcsu
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/bcsu-0.1.2/bcsu-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.0.0
     created: "2024-11-21T03:50:42.308944399Z"
     description: A Helm chart for Kubernetes
     digest: 6ecc10b7451ed9e472a3441e80334c36af2d00eb886879150e633a1c66e21f9f
@@ -845,4 +855,4 @@ entries:
     urls:
     - https://github.com/lich158/tiexiang-main/releases/download/tx-app-0.1.0/tx-app-0.1.0.tgz
     version: 0.1.0
-generated: "2025-06-17T08:34:19.948693993Z"
+generated: "2025-06-20T02:28:11.782280833Z"
