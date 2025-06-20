@@ -4,10 +4,10 @@ metadata:
   name: {{ include "fcu.fullname" . }}-fcu
   labels:
     {{- include "fcu.labels" . | nindent 4 }}
-data:  
+data:
   {{- range $key, $value := .Values.configMap }}
   {{- if ne $key "data" }}
   {{ $key }}: |
-    {{ $value | toPrettyJson | indent 4 }}
+{{ $value | nindent 4 }}
   {{- end }}
   {{- end }}
