@@ -36,10 +36,6 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: {{ .Values.image.name }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command:
-          - sh
-          - -c
-          - /usr/bin/python3 /app/bcsu/BCSU.py
           env:
           - name: name  
             valueFrom:  
