@@ -94,7 +94,7 @@ spec:
           - mountPath: /app/data
             name: data
           - name: fcu-config
-            mountPath: /app/fcu_simulator/config/
+            mountPath: /app/fcu_simulator/config/CameraSet.json
             subPath: CameraSet.json
           {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
