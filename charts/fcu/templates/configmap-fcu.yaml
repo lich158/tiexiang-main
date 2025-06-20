@@ -6,8 +6,8 @@ metadata:
     {{- include "fcu.labels" . | nindent 4 }}
 data:  
   {{- range $key, $value := .Values.configMap }}
-    {{- if ne $key "data" }}
-    {{ $key }}: |
-      {{ $value | toJson | indent 6 }}
-    {{- end }}
+  {{- if ne $key "data" }}
+  {{ $key }}: |
+    {{ $value | toPrettyJson | indent 4 }}
+  {{- end }}
   {{- end }}
