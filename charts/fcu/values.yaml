@@ -155,7 +155,7 @@ persistentVolumeClaim:
 
 
 configMap:
-  config.json: |
+  data: |
     {
       "Scene": {
           "CompanyCode": "NanNingJu",
