@@ -51,8 +51,9 @@ spec:
               cpu: 10m
               memory: 10Mi
           volumeMounts:
-            - mountPath: /app/config
+            - mountPath: /app/config/config.json
               name: config
+              subPath: config.json
             - mountPath: /app/data
               name: data           
           {{- with .Values.volumeMounts }}              

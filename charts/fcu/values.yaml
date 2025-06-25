@@ -155,7 +155,78 @@ persistentVolumeClaim:
 
 
 configMap:
-  data: '{"Device":{"DeviceClass":"Radar_Videos","FCUNum":"1836303989153767425","Manufacturer":"dapeng","ScopeClass":"ZhaLanJie"},"Level2Seconds":{"0":12000,"1":600,"2":300,"3":180,"4":60,"5":30,"6":10},"Logger":{"Level":"INFO","LogDir":"log"},"MQTTClient":{"CertFile":"","Host":"emqx-cluster-listeners.emqx-system","Password":"tx1726667868610","Port":"1883","Username":"nnj-yonganzhen-yaz014-1836303989153767425"},"MinioClient":{"AccessKey":"minio","CertCheck":"False","Endpoint":"minio.minio-system:443","SecretKey":"minio123"},"RPCServer":{"IP":"127.0.0.1","Port":"9999"},"Scene":{"BCSUNum":"yaz014","CompanyCode":"nnj","SceneClass":"KaiKuoDi","StationCode":"yonganzhen"}}'
+  config.json: |
+    {
+      "Scene": {
+          "CompanyCode": "NanNingJu",
+          "StationCode": "NanNingZhan",
+          "SceneClass": "KaiKuoDi",
+          "BCSUNum": "123"
+      },
+      "Device": {
+          "Manufacturer": "GXTieXiang",
+          "ScopeClass": "XianJie",
+          "DeviceClass": "Radar_Videos",
+          "LineCode": "543342",
+          "FCUNum": "123"
+      },
+      "Level2Seconds": {
+          "0": 12000,
+          "1": 600,
+          "2": 300,
+          "3": 180,
+          "4": 60,
+          "5": 30,
+          "6": 10
+      },
+      "MQTTClient": {
+          "Host": "",
+          "Port": "",
+          "Username": "",
+          "Password": "",
+          "CertFile": "",
+          "DebugFile": "log/mqtt_debug.txt"
+      },
+      "MinioClient": {
+          "Endpoint": "",
+          "AccessKey": "",
+          "SecretKey": "",
+          "secure": "False",
+          "CertCheck": "False",
+          "ExpirationLevel": "2",
+          "ExpirationDays": "7",
+          "DebugFile": "log/minio_debug.txt"
+      },
+      "RPCServer": {
+          "IP": "127.0.0.1",
+          "Port": "9999"
+      },
+      "Logger": {
+          "LogDir": "log",
+          "Level": "INFO"
+      },
+      "Sensors": {
+          "videos": [
+              {
+              "EquipmentID": "video1",
+              "IP": "192.168.1.10",
+              "Port": 8000
+              },
+              {
+              "EquipmentID": "video2",
+              "IP": "192.168.1.20",
+              "Port": 8000
+              }
+          ],
+          "radars": [
+              {
+              "EquipmentID": "radar1",
+              "IP": "192.168.1.11",
+              "Port": 8001
+              }
+          ]
+      }
+    }
   CameraSet.json: |
     {
         "ca4": {
