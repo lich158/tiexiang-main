@@ -107,7 +107,7 @@ spec:
         name: config   
       - name: fcu-config
         configMap:
-          name: {{ include "fcu.fullname" . }}-fcu
+          name: {{ include "fcu.fullname" . }}
           defaultMode: 0644
       - name: data
         {{- with .Values.persistentVolumeClaim.data }}
