@@ -228,56 +228,67 @@ configMap:
       }
     }
   CameraSet.json: |
-      {
-        "ca4": {
-            "rtsp_url": "rtsp://admin:Tiexiang@192.168.1.65:554/h264/ch1/main/av_stream",
-            "intrusion_detection_enabled": true,
-            "save_full_image_enabled": true,
-            "save_object_crop_enabled": true,
-            "detection_areas": [
-                {
-                    "type": "fence",
-                    "points": [
-                      [
-                        1239,
-                        663
-                    ],
-                    [
-                        1948,
-                        603
-                    ],
-                    [
-                        2022,
-                        741
-                    ],
-                    [
-                        1273,
-                        804
-                    ]
-                    ]
-                }
-            ],
-            "first_stage": {
-                "model": "yolo_stage1n",
-                "iou": 0.5,
-                "confidence": 0.5,
-                "selected_classes": [
-                    "person",
-                    "smog",
-                    "flame"
+    {
+    "device_config": {
+        "rtsp_url": "rtsp://admin:Tiexiang@192.168.1.68:554/h264/ch1/main/av_stream",
+        "intrusion_detection_enabled": true,
+        "save_full_image_enabled": true,
+        "save_object_crop_enabled": false,
+        "is_show_enabled": true,
+        "lidar_data_length":6300000,
+        "video_fps": 20,
+        "detect_mode": "online",
+        "detection_areas": [
+            {
+                "type": "impact",
+                "points": [
+                  [
+                    1182,
+                    657
+                ],
+                [
+                    1615,
+                    759
+                ],
+                [
+                    1740,
+                    1296
+                ],
+                [
+                    1585,
+                    1434
+                ],
+                [
+                    1088,
+                    1428
                 ]
-            },
-            "second_stage": {
-                "model": "yolo_stage2n",
-                "iou": 0.3,
-                "confidence": 0.4,
-                "selected_classes": [
-                    "helmet",
-                    "vest",
-                    "smoking",
-                    "phone"
                 ]
             }
+        ],
+        "first_stage": {
+            "model": "yolo_stage1n",
+            "iou": 0.5,
+            "confidence": 0.5,
+            "selected_classes": [
+                "person"
+            ]
+        },
+        "second_stage": {
+            "model": "yolo_stage2n",
+            "iou": 0.3,
+            "confidence": 0.4,
+            "selected_classes": [
+                "helmet",
+                "vest",
+                "smoking",
+                "phone"
+            ]
+        },
+        "device_thresholds": {
+            "temperature_threshold": 60,
+            "precip_threshold": 40,
+            "wind_speed_threshold": 80
         }
       }
+    }
     
