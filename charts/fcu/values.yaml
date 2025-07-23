@@ -234,7 +234,7 @@ configMap:
         "intrusion_detection_enabled": true,
         "save_full_image_enabled": true,
         "save_object_crop_enabled": false,
-        "is_show_enabled": true,
+        "is_show_enabled": false,
         "lidar_data_length":6300000,
         "video_fps": 20,
         "detect_mode": "online",
