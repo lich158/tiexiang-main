@@ -8,4 +8,4 @@ data:
   config.json: |
     {{- .Values.configMap.data | nindent 4 }}
   FcuConfig.json: |
-    {{- .Values.configMap.CameraSet | fromJson | toYaml | nindent 4 }}
+    {{- .Values.configMap.CameraSet | fromJson | toJson | nindent 4 }}
