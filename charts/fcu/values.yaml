@@ -227,7 +227,7 @@ configMap:
           ]
       }
     }
-  CameraSet.json: |
+  CameraSet: |
     {
     "device_config": {
         "rtsp_url": "rtsp://admin:Tiexiang@192.168.1.68:554/h264/ch1/main/av_stream",

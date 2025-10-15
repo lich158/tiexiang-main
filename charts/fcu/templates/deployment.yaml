@@ -94,9 +94,9 @@ spec:
           volumeMounts:
             - mountPath: /app/data
               name: data
-            - mountPath: /app/fcu_simulator/config/CameraSet.json
+            - mountPath: /app/config/FcuConfig.json
               name: fcu-config
-              subPath: CameraSet.json
+              subPath: FcuConfig.json
           {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}    
@@ -112,8 +112,8 @@ spec:
           configMap:
             name: {{ include "fcu.fullname" . }}
             items:
-              - key: CameraSet.json
-                path: CameraSet.json
+              - key: FcuConfig.json
+                path: FcuConfig.json
             defaultMode: 420
         - name: data
           {{- with .Values.persistentVolumeClaim.data }}

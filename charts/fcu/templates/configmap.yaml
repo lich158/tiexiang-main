@@ -7,5 +7,5 @@ metadata:
 data:
   config.json: |
     {{- .Values.configMap.data | nindent 4 }}
-  CameraSet.json: |
-    {{- .Values.configMap.CameraSet | nindent 4 }}
+  FcuConfig.json: |
+    {{- .Values.configMap.CameraSet | fromJson | toYaml | nindent 4 }}
