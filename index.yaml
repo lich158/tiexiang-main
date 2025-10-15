@@ -198,6 +198,16 @@ entries:
   fcu:
   - apiVersion: v2
     appVersion: 0.0.0
+    created: "2025-10-15T02:28:04.233193782Z"
+    description: A Helm chart for Kubernetes
+    digest: 145f2b3a4bbafc3c5e8b21712980029445f735efd9ae6a0741fceeeb321ab7ce
+    name: fcu
+    type: application
+    urls:
+    - https://github.com/lich158/tiexiang-main/releases/download/fcu-0.1.15/fcu-0.1.15.tgz
+    version: 0.1.15
+  - apiVersion: v2
+    appVersion: 0.0.0
     created: "2025-07-23T08:52:39.230004461Z"
     description: A Helm chart for Kubernetes
     digest: 78c15024b7d8fcdcb2145edce817e187ca4430f2e11b220df4d4d963ba08a9ed
@@ -965,4 +975,4 @@ entries:
     urls:
     - https://github.com/lich158/tiexiang-main/releases/download/tx-app-0.1.0/tx-app-0.1.0.tgz
     version: 0.1.0
-generated: "2025-08-12T07:22:24.275252127Z"
+generated: "2025-10-15T02:28:04.23349843Z"
