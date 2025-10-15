@@ -8,4 +8,4 @@ data:
   config.json: |
     {{- .Values.configMap.data | nindent 4 }}
   CameraSet.json: |
-    {{- index .Values.configMap "CameraSet.json" | nindent 4 }}
+    {{- .Values.configMap.CameraSet | nindent 4 }}

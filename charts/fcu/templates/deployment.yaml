@@ -92,35 +92,41 @@ spec:
             {{- end }}
             {{- end }}
           volumeMounts:
-          - mountPath: /app/data
-            name: data
-          - name: fcu-config
-            mountPath: /app/fcu_simulator/config/CameraSet.json
-            subPath: CameraSet.json
+            - mountPath: /app/data
+              name: data
+            - mountPath: /app/fcu_simulator/config/CameraSet.json
+              name: fcu-config
+              subPath: CameraSet.json
           {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}    
       volumes:
-      - configMap:
-          defaultMode: 420
-          name: {{ include "fcu.fullname" . }}
-        name: config   
-      - name: fcu-config
-        configMap:
-          name: {{ include "fcu.fullname" . }}
-          defaultMode: 0644
-      - name: data
-        {{- with .Values.persistentVolumeClaim.data }}
-        {{- if .enabled }}
-        persistentVolumeClaim:
-          claimName: {{  .claimName | default (printf "%s-%s" (include "fcu.fullname" $) "data") }}
-        {{- else }}
-        emptyDir: {}
+        - name: config
+          configMap:
+            name: {{ include "fcu.fullname" . }}
+            items:
+              - key: config.json
+                path: config.json
+            defaultMode: 420
+        - name: fcu-config
+          configMap:
+            name: {{ include "fcu.fullname" . }}
+            items:
+              - key: CameraSet.json
+                path: CameraSet.json
+            defaultMode: 420
+        - name: data
+          {{- with .Values.persistentVolumeClaim.data }}
+          {{- if .enabled }}
+          persistentVolumeClaim:
+            claimName: {{  .claimName | default (printf "%s-%s" (include "fcu.fullname" $) "data") }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+          {{- end }}
+        {{- with .Values.volumes }}             
+          {{- toYaml . | nindent 8 }}
         {{- end }}
-        {{- end }}
-      {{- with .Values.volumes }}             
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
