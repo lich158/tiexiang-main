@@ -133,11 +133,12 @@ spec:
       {{- end }}
       {{- with .Values.affinity }}
       affinity:
-        nodeAffinity:  
-          preferredDuringSchedulingIgnoredDuringExecution:  
-            nodeSelectorTerms:
-              - matchExpressions:
-                  - key: "tiexiang.io/edge-node"  
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: "tiexiang.io/edge-node"
                     operator: In
                     values:
                       - "true"
