@@ -1,0 +1,34 @@
+{{- if .Values.fcuServerService.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.fcuServerService.name | default (printf "%s-fcu-svc" (include "fcu.fullname" .)) }}
+  labels:
+    {{- include "fcu.labels" . | nindent 4 }}
+  {{- with .Values.fcuServerService.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  type: {{ .Values.fcuServerService.type | default "ClusterIP" }}
+  selector:
+    {{- include "fcu.selectorLabels" . | nindent 4 }}
+  {{- if .Values.fcuServerService.ports }}
+  ports:
+    {{- range .Values.fcuServerService.ports }}
+    - name: {{ .name }}
+      port: {{ .port }}
+      targetPort: {{ .targetPort }}
+      protocol: {{ .protocol | default "TCP" }}
+      {{- if .nodePort }}
+      nodePort: {{ .nodePort }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  {{- if .Values.fcuServerService.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ .Values.fcuServerService.externalTrafficPolicy }}
+  {{- end }}
+  {{- if .Values.fcuServerService.allocateLoadBalancerNodePorts }}
+  allocateLoadBalancerNodePorts: true
+  {{- end }}
+{{- end }}

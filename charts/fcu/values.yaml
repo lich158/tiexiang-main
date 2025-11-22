@@ -6,26 +6,47 @@
 replicaCount: 1
 
 
-publishServer: 
-  # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
+publishServer:
   image:
-    name: tiexiang.io/fcu-if/publish-server:v1.0.5
-    repository: ""
-    # This sets the pull policy for images.
+    name: tiexiang.io/fcu-if/publish-server
+    tag: v1.0.23
     pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is the chart appVersion.
-    tag: ""
-  
-  # This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
-  imagePullSecrets: []
+  ports: []
+  livenessProbe: {}
+  readinessProbe: {}
 
 fcuServer:
   image:
-    name: tiexiang.io/dapeng/fcu-image-1729909396545:v1.0
-    repository: ""
+    name: tiexiang.io/dapeng/fcu-test-leishi-1761987821914
+    tag: 1.0.3
     pullPolicy: IfNotPresent
-    tag: ""
-  
+  ports:
+    - name: http
+      containerPort: 5000
+      protocol: TCP
+    - name: metrics
+      containerPort: 9100
+      protocol: TCP
+  livenessProbe: {}
+  readinessProbe: {}
+
+fcuServerService:
+  enabled: true
+  name: fcu-server-svc
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 5000
+      targetPort: 5000
+      protocol: TCP
+      nodePort: 32000
+    - name: metrics
+      port: 9100
+      targetPort: 9100
+      protocol: TCP
+
+
+      
   imagePullSecrets: []
 
   # Additional volumeMounts on the output Deployment definition.

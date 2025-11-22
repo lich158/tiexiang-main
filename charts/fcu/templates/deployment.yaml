@@ -55,10 +55,10 @@ spec:
               name: config
               subPath: config.json
             - mountPath: /app/data
-              name: data           
-          {{- with .Values.volumeMounts }}              
+              name: data
+          {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
-          {{- end }}   
+          {{- end }}
           lifecycle:
             postStart:
               exec:
@@ -66,13 +66,24 @@ spec:
                   - /bin/bash
                   - '-c'
                   - sleep 10 
+
         - name: fcu-server
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           {{- with .Values.fcuServer }}
           image: {{ .image.name }}
           imagePullPolicy: {{ .image.pullPolicy }}
-          {{- end }}          
+          {{- end }}
+
+          {{- if .Values.fcuServer.ports }}
+          ports:
+            {{- range .Values.fcuServer.ports }}
+            - name: {{ .name }}
+              containerPort: {{ .containerPort }}
+              protocol: {{ .protocol | default "TCP" }}
+            {{- end }}
+          {{- end }}
+
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
@@ -99,7 +110,8 @@ spec:
               subPath: FcuConfig.json
           {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
-          {{- end }}    
+          {{- end }}
+
       volumes:
         - name: config
           configMap:
@@ -124,13 +136,15 @@ spec:
           emptyDir: {}
           {{- end }}
           {{- end }}
-        {{- with .Values.volumes }}             
+        {{- with .Values.volumes }}
           {{- toYaml . | nindent 8 }}
         {{- end }}
+
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
       {{- with .Values.affinity }}
       affinity:
         nodeAffinity:
@@ -146,7 +160,8 @@ spec:
                     operator: In  
                     values:  
                       - {{ . | quote }}
-      {{- end }}      
+      {{- end }}
+
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
